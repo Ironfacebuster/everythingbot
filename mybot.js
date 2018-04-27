@@ -112,7 +112,8 @@ client.on("message", async message => {
 	
 	if(message.mentions.members.first().user.id===client.user.id){
 		message.reply(message.mentions.members.first().user.id);
-		const args = message.content.slice(message.mentions.members.first().length).trim().split(/ +/g);
+		var t = 438881380500373504;
+		const args = message.content.slice(t.length).trim().split(/ +/g);
 		const command = args.shift().toLowerCase();
 		message.reply(command);
 		mentionCommand (message, message.mentions.members.first());
