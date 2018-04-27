@@ -111,7 +111,7 @@ client.on("message", async message => {
 	});
 	
 	if(message.mentions.members.first().user.id===client.user.id){
-		mentionCommand (message, message.mentions.members.first());
+		mentionCommand (message, message.mentions.members.first().user.id);
 	}
 });
 
