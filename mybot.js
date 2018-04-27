@@ -112,6 +112,9 @@ client.on("message", async message => {
 	
 	if(message.mentions.members.first().user.id===client.user.id){
 		message.reply(message.mentions.members.first().user.id);
+		const args = message.content.slice(prefix.length).trim().split(/ +/g);
+		const command = args.shift().toLowerCase();
+		message.reply(command);
 		mentionCommand (message, message.mentions.members.first().user.id);
 	}
 });
