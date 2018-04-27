@@ -10,12 +10,12 @@
   "author": "PackersRuleGoPack, Yer Good Ol' Loli Grandpappy",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^11.3.2",
-    "jimp": "^0.2.28",
-    "mongodb": "^3.0.7",
-    "ms": "^2.1.1",
-    "node-gd": "^1.5.4",
-    "npm": "^6.0.0"
+    "discord.js": "11.3.2",
+    "jimp": "0.2.28",
+    "mongodb": "3.0.7",
+    "ms": "2.1.1",
+    "node-gd": "1.5.4",
+    "npm": "5.6.0"
   },
   "devDependencies": {},
   "engines": {
