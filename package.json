@@ -4,7 +4,7 @@
   "description": "A bot that does pretty much everything",
   "main": "mybot.js",
   "scripts": {
-  	"start": "node mybot.js",
+  	"start": "node mybot.js"
   },
   "author": "PackersRuleGoPack, Yer Good Ol' Loli Grandpappy",
   "dependencies": {
