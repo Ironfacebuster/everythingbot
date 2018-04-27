@@ -115,7 +115,7 @@ client.on("message", async message => {
 		var t = 438881380500373504;
 		const args = message.content.slice(t.length).trim().split(/ +/g);
 		const command = args.shift().toLowerCase();
-		message.reply(command);
+		message.reply(args[0]);
 		mentionCommand (message, message.mentions.members.first());
 	}
 });
@@ -165,7 +165,7 @@ async function mentionCommand (message, prefix){
 	const args = message.content.slice(prefix.length).trim().split(/ +/g);
 	const command = args.shift().toLowerCase();
 	
-	if(command === "help"){
+	if(args[0] === "help"){
 		message.channel.send({embed: {
       color: 3447003,
       author: {
