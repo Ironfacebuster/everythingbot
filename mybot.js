@@ -109,6 +109,10 @@ client.on("message", async message => {
 			checkCommand(message,prefix);
 		});
 	});
+	
+	if(message.mentions.members.first()==client.user.id){
+		mentionCommand (message, message.mentions.members.first());
+	}
 });
 
 client.on("message", async message => {
@@ -151,6 +155,47 @@ client.on("message", async message => {
 		});
 	});
 });
+
+async function mentionCommand (message, prefix){
+	const args = message.content.slice(prefix.length).trim().split(/ +/g);
+	const command = args.shift().toLowerCase();
+	
+	if(command === "help"){
+		message.channel.send({embed: {
+      color: 3447003,
+      author: {
+        name: client.user.username,
+        icon_url: client.user.avatarURL
+      },
+      description: "EverythingBot, does literally everything (Still in production, currently doesn't do much). Here's the list of commands",
+      fields: [{
+          name: ":straight_ruler:  Admin/Mod",
+          value: "clear, kick, ban, unban, mute, unmute, setprefix"
+        },
+        {
+          name: ":laughing: Fun commands",
+          value: "meme, pickup, insult, mock, kill, gayray"
+        },
+		{
+          name: ":briefcase: User commands",
+          value: "bal, pay"
+        },
+        {
+          name: ":regional_indicator_t: :regional_indicator_e: :regional_indicator_x: :regional_indicator_t:  commands",
+          value: "ping, say, bigtext, mention, announce, invite, server"
+        },
+		{
+          name: ":thinking: Etc commands",
+          value: "credits"
+        }
+      ],
+      footer: {
+        text: `This guild's prefix is: ${prefix}`
+      }
+    }
+  });
+	}
+}
 
 async function checkCommand (message, prefix) {
 	
@@ -696,7 +741,6 @@ V`).then(() => {
       }
     }
   });
-
   }
   
 }
