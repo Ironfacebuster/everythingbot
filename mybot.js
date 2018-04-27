@@ -111,11 +111,6 @@ client.on("message", async message => {
 	});
 	
 	if(message.mentions.members.first().user.id===client.user.id){
-		message.reply(message.mentions.members.first().user.id);
-		var t = 438881380500373504;
-		const args = message.content.slice(t.length).trim().split(/ +/g);
-		const command = args.shift().toLowerCase();
-		message.reply(args[0]);
 		mentionCommand (message, message.mentions.members.first());
 	}
 });
@@ -161,8 +156,8 @@ client.on("message", async message => {
 	});
 });
 
-async function mentionCommand (message, prefix){
-	const args = message.content.slice(prefix.length).trim().split(/ +/g);
+async function mentionCommand (message, p){
+	const args = message.content.slice(p.length).trim().split(/ +/g);
 	const command = args.shift().toLowerCase();
 	
 	if(args[0] === "help"){
@@ -205,7 +200,7 @@ async function mentionCommand (message, prefix){
 async function checkCommand (message, prefix) {
 	
 	if(message.author.bot) return;
-
+	
 	if(message.content.indexOf(prefix) !== 0) return;
 	
 	const args = message.content.slice(prefix.length).trim().split(/ +/g);
