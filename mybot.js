@@ -28,7 +28,7 @@ var helpMenu = {
         },
 		{
           name: ":camera:  Image commands",
-          value: "poster, sepia, greyscale, invert, flip, rotate, blur"
+          value: "poster, sepia, greyscale, invert, flip, mirror, blur"
         },
         {
           name: ":laughing: Fun commands",
@@ -254,15 +254,56 @@ async function checkCommand (message, prefix) {
 	
 	if(command === "sepia") {
 		if(args[0] == null){
-			message.reply("please add an image or link to an image, and try again");
+			message.reply("please add a link to an image, and try again");
 			return;
 		}
-		if(message.attachments.length != 0){
-			var att = message.attachments;
-			sepia(message, att[0].url);
-		} else {
-			sepia(message, args[0]);	
+		var Attachments = message.attachments;
+		sepiaFunction(message, args[0]);
+	}
+	
+	if(command === "poster") {
+		if(args[0] == null){
+			message.reply("please add a link to an image, and try again");
+			return;
 		}
+		var Attachments = message.attachments;
+		posterFunction(message, args[0]);
+	}
+	
+	if(command === "mirror") {
+		if(args[0] == null){
+			message.reply("please add a link to an image, and try again");
+			return;
+		}
+		var Attachments = message.attachments;
+		mirrorFunction(message, args[0]);
+	}
+	
+	if(command === "flip") {
+		if(args[0] == null){
+			message.reply("please add a link to an image, and try again");
+			return;
+		}
+		var Attachments = message.attachments;
+		flipFunction(message, args[0]);
+	}
+	
+	if(command === "invert") {
+		if(args[0] == null){
+			message.reply("please add a link to an image, and try again");
+			return;
+		}
+		var Attachments = message.attachments;
+		invertFunction(message, args[0]);
+	}
+	
+	if(command === "blur") {
+		if(args[0] == null){
+			message.reply("please add a link to an image, and try again");
+			return;
+		}
+		var Attachments = message.attachments;
+		blurFunction(message, args[0]);
 	}
 	
 	if (command === "welcomerole") {
@@ -805,14 +846,129 @@ function makeProfile (mes, money, xp, level, tag) {
 	});
 }
 
-function sepia (message, im) {
-	message.channel.startTyping(1);
+function sepiaFunction (message, im) {
 	Jimp.read(im, function (err, image) {
-		if(err) throw err;
-		image.sepia().write("/app/tempPic.jpg", function (err) {
-			if(err) throw err;
-			message.channel.send("", { files: ["/app/tempPic.jpg"]}).then(message.channel.stopTyping());
-		});
+		if(err) {
+			console.log(err);
+			message.reply('are you sure this is a link?');
+			//catch(err);
+		} else {
+			message.channel.startTyping(1);
+			image.sepia(function (err, image) {
+				image.write("/app/tempPic.jpg", function (err) {
+					if(err) throw err;
+					message.channel.send("", { files: ["/app/tempPic.jpg"]}).then(message.channel.stopTyping());
+				});
+			});
+		}
+	});
+}	
+
+function posterFunction (message, im) {
+	Jimp.read(im, function (err, image) {
+		if(err) {
+			console.log(err);
+			message.reply('are you sure this is a link?');
+			//catch(err);
+		} else {
+			message.channel.startTyping(1);
+			image.posterize(4,function (err, image) {
+				image.write("/app/tempPic.jpg", function (err) {
+					if(err) throw err;
+					message.channel.send("", { files: ["/app/tempPic.jpg"]}).then(message.channel.stopTyping());
+				});
+			});
+		}
+	});
+}	
+
+function greyscaleFunction (message, im) {
+	Jimp.read(im, function (err, image) {
+		if(err) {
+			console.log(err);
+			message.reply('are you sure this is a link?');
+			//catch(err);
+		} else {
+			message.channel.startTyping(1);
+			image.greyscale(function (err, image) {
+				image.write("/app/tempPic.jpg", function (err) {
+					if(err) throw err;
+					message.channel.send("", { files: ["/app/tempPic.jpg"]}).then(message.channel.stopTyping());
+				});
+			});
+		}
+	});
+}	
+
+function invertFunction (message, im) {
+	Jimp.read(im, function (err, image) {
+		if(err) {
+			console.log(err);
+			message.reply('are you sure this is a link?');
+			//catch(err);
+		} else {
+			message.channel.startTyping(1);
+			image.invert(function (err, image) {
+				image.write("/app/tempPic.jpg", function (err) {
+					if(err) throw err;
+					message.channel.send("", { files: ["/app/tempPic.jpg"]}).then(message.channel.stopTyping());
+				});
+			});
+		}
+	});
+}	
+
+function mirrorFunction (message, im) {
+	Jimp.read(im, function (err, image) {
+		if(err) {
+			console.log(err);
+			message.reply('are you sure this is a link?');
+			//catch(err);
+		} else {
+			message.channel.startTyping(1);
+			image.flip(true, false, function (err, image) {
+				image.write("/app/tempPic.jpg", function (err) {
+					if(err) throw err;
+					message.channel.send("", { files: ["/app/tempPic.jpg"]}).then(message.channel.stopTyping());
+				});
+			});
+		}
+	});
+}	
+
+function flipFunction (message, im) {
+	Jimp.read(im, function (err, image) {
+		if(err) {
+			console.log(err);
+			message.reply('are you sure this is a link?');
+			//catch(err);
+		} else {
+			message.channel.startTyping(1);
+			image.flip(false, true, function (err, image) {
+				image.write("/app/tempPic.jpg", function (err) {
+					if(err) throw err;
+					message.channel.send("", { files: ["/app/tempPic.jpg"]}).then(message.channel.stopTyping());
+				});
+			});
+		}
+	});
+}	
+
+function blurFunction (message, im) {
+	Jimp.read(im, function (err, image) {
+		if(err) {
+			console.log(err);
+			message.reply('are you sure this is a link?');
+			//catch(err);
+		} else {
+			message.channel.startTyping(1);
+			image.blur(15, function (err, image) {
+				image.write("/app/tempPic.jpg", function (err) {
+					if(err) throw err;
+					message.channel.send("", { files: ["/app/tempPic.jpg"]}).then(message.channel.stopTyping());
+				});
+			});
+		}
 	});
 }	
 
