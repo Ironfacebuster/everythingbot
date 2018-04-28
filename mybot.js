@@ -303,7 +303,7 @@ async function checkCommand (message, prefix) {
 			return;
 		}
 		var Attachments = message.attachments;
-		blurFunction(message, args[0]);
+		blurFunction(message, args[0], args[1]);
 	}
 	
 	if (command === "welcomerole") {
@@ -954,7 +954,7 @@ function flipFunction (message, im) {
 	});
 }	
 
-function blurFunction (message, im) {
+function blurFunction (message, amount, im) {
 	Jimp.read(im, function (err, image) {
 		if(err) {
 			console.log(err);
@@ -962,7 +962,7 @@ function blurFunction (message, im) {
 			//catch(err);
 		} else {
 			message.channel.startTyping(1);
-			image.blur(15, function (err, image) {
+			image.blur(amount, function (err, image) {
 				image.write("/app/tempPic.jpg", function (err) {
 					if(err) throw err;
 					message.channel.send("", { files: ["/app/tempPic.jpg"]}).then(message.channel.stopTyping());
