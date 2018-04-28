@@ -158,9 +158,7 @@ client.on("message", async message => {
 			} else {
 				var user = defaultUser;
 				user.name = message.author.tag;
-				dbo.collection("users").insertOne(user, function(err, obj) {
-					if(err) throw err;
-				});
+				dbo.collection("users").insertOne(user);
 			}
 		});
 	});
