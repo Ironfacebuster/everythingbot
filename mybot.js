@@ -222,6 +222,7 @@ async function checkCommand (message, prefix) {
 					if(result.daily != d.getDate()+d.getMonth()){
 						var ch = defaultUser;
 						message.reply(`you just gained ${result.level * 200} as your daily pay!`);
+						ch.name = result.name;
 						ch.xp = result.xp;
 						ch.level = result.level;
 						ch.money = result.money + (result.level * 200);
