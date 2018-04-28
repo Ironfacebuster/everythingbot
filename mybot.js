@@ -839,9 +839,9 @@ function sepiaFunction (message, im) {
 		} else {
 			message.channel.startTyping(1);
 			image.sepia(function (err, image) {
-				image.write("/app/tempPic.jpg", function (err) {
+				image.write("/app/tempPic.png", function (err) {
 					if(err) throw err;
-					message.channel.send("", { files: ["/app/tempPic.jpg"]}).then(message.channel.stopTyping());
+					message.channel.send("", { files: ["/app/tempPic.png"]}).then(message.channel.stopTyping());
 				});
 			});
 		}
@@ -857,9 +857,9 @@ function posterFunction (message, im) {
 		} else {
 			message.channel.startTyping(1);
 			image.posterize(4,function (err, image) {
-				image.write("/app/tempPic.jpg", function (err) {
+				image.write("/app/tempPic.png", function (err) {
 					if(err) throw err;
-					message.channel.send("", { files: ["/app/tempPic.jpg"]}).then(message.channel.stopTyping());
+					message.channel.send("", { files: ["/app/tempPic.png"]}).then(message.channel.stopTyping());
 				});
 			});
 		}
@@ -875,9 +875,9 @@ function greyscaleFunction (message, im) {
 		} else {
 			message.channel.startTyping(1);
 			image.greyscale(function (err, image) {
-				image.write("/app/tempPic.jpg", function (err) {
+				image.write("/app/tempPic.png", function (err) {
 					if(err) throw err;
-					message.channel.send("", { files: ["/app/tempPic.jpg"]}).then(message.channel.stopTyping());
+					message.channel.send("", { files: ["/app/tempPic.png"]}).then(message.channel.stopTyping());
 				});
 			});
 		}
@@ -893,9 +893,9 @@ function invertFunction (message, im) {
 		} else {
 			message.channel.startTyping(1);
 			image.invert(function (err, image) {
-				image.write("/app/tempPic.jpg", function (err) {
+				image.write("/app/tempPic.png", function (err) {
 					if(err) throw err;
-					message.channel.send("", { files: ["/app/tempPic.jpg"]}).then(message.channel.stopTyping());
+					message.channel.send("", { files: ["/app/tempPic.png"]}).then(message.channel.stopTyping());
 				});
 			});
 		}
@@ -911,9 +911,9 @@ function mirrorFunction (message, im) {
 		} else {
 			message.channel.startTyping(1);
 			image.flip(true, false, function (err, image) {
-				image.write("/app/tempPic.jpg", function (err) {
+				image.write("/app/tempPic.png", function (err) {
 					if(err) throw err;
-					message.channel.send("", { files: ["/app/tempPic.jpg"]}).then(message.channel.stopTyping());
+					message.channel.send("", { files: ["/app/tempPic.png"]}).then(message.channel.stopTyping());
 				});
 			});
 		}
@@ -929,9 +929,9 @@ function flipFunction (message, im) {
 		} else {
 			message.channel.startTyping(1);
 			image.flip(false, true, function (err, image) {
-				image.write("/app/tempPic.jpg", function (err) {
+				image.write("/app/tempPic.png", function (err) {
 					if(err) throw err;
-					message.channel.send("", { files: ["/app/tempPic.jpg"]}).then(message.channel.stopTyping());
+					message.channel.send("", { files: ["/app/tempPic.png"]}).then(message.channel.stopTyping());
 				});
 			});
 		}
@@ -948,9 +948,9 @@ function blurFunction (message, amount, im) {
 			message.channel.startTyping(1);
 			image.blur(parseInt(amount), function (err, image) {
 				if(err) message.reply(err);
-				image.write("/app/tempPic.jpg", function (err) {
+				image.write("/app/tempPic.png", function (err) {
 					if(err) throw err;
-					message.channel.send("", { files: ["/app/tempPic.jpg"]}).then(message.channel.stopTyping());
+					message.channel.send("", { files: ["/app/tempPic.png"]}).then(message.channel.stopTyping());
 				});
 			});
 		}
