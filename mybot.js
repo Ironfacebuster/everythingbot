@@ -15,6 +15,8 @@ const client = new Discord.Client();
 var prefix = 'e!';
 
 var pic = "https://github.com/Ironfacebuster/everythingbot/blob/master/balPic.png?raw=true";
+var fon = "https://github.com/Ironfacebuster/everythingbot/blob/master/bahnschrift.fnt";
+var fonTwo = "https://github.com/Ironfacebuster/everythingbot/blob/master/FranklinGothicMedium.fnt";
 
 var defaultServer = {
 	"serverID":null,
@@ -798,10 +800,10 @@ V`).then(() => {
 function makeProfile (mes, money, xp, level, tag) {
 	Jimp.read(pic, function (err, image) {
 		if(err) throw err;
-		Jimp.loadFont (Jimp.FONT_SANS_32_WHITE).then(function(font) {
+		Jimp.loadFont (fon).then(function(font) {
 			image.print(font,250,87, tag).getBuffer(Jimp.MIME_JPEG, function (err, img) {
 			if(err) throw err;
-				Jimp.loadFont (Jimp.FONT_SANS_64_WHITE).then(function(font) {
+				Jimp.loadFont (fonTwo).then(function(font) {
 					image.print(font,36,250, `XP ${xp} / ${level*150}`).getBuffer(Jimp.MIME_JPEG, function (err, img) {
 						if(err) throw err;
 						image.print(font,36,330, `Level ${level}`).getBuffer(Jimp.MIME_JPEG, function (err, img) {
