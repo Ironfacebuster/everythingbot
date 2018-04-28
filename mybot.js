@@ -962,7 +962,7 @@ function blurFunction (message, amount, im) {
 			//catch(err);
 		} else {
 			message.channel.startTyping(1);
-			image.blur(amount, function (err, image) {
+			image.blur(parseInt(amount), function (err, image) {
 				if(err) message.reply(err);
 				image.write("/app/tempPic.jpg", function (err) {
 					if(err) throw err;
