@@ -155,6 +155,12 @@ client.on("message", async message => {
 						if(err) throw err;
 					});
 				}
+			} else {
+				var user = defaultUser;
+				user.name = message.author.tag;
+				dbo.collection("users").insertOne(user, function(err, obj) {
+					if(err) throw err;
+				});
 			}
 		});
 	});
@@ -230,6 +236,8 @@ async function checkCommand (message, prefix) {
 						dbo.collection("users").update(query, ch, function (err, res) {
 							if(err) throw err;
 						});
+					} else {
+						message.reply("you've already gotten your daily!");
 					}
 				}
 			});
