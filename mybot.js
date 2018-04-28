@@ -182,7 +182,7 @@ async function mentionCommand (message, p){
         name: client.user.username,
         icon_url: client.user.avatarURL
       },
-      description: `Command usage: ${prefix}bal`,
+      description: `Command example: ${prefix}bal`,
       fields: [{
           name: ":straight_ruler:  Admin/Mod",
           value: "clear, kick, ban, unban, mute, unmute, setprefix"
