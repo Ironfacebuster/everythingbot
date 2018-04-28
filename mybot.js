@@ -67,7 +67,7 @@ client.on("guildCreate", guild => {
 	  var dbo = db.db("servers");
 	  var serv = defaultServer;
 	  serv.serverID = guild.id;
-	  dbo.collection("servers").insertOne(serv, function(err, obj) {
+	  dbo.collection("servers").insert(serv, function(err, obj) {
 		  if(err) throw err;
 		  db.close();
 	  });
