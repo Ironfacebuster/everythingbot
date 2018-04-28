@@ -14,7 +14,7 @@ const client = new Discord.Client();
 
 var prefix = 'e!';
 
-var pic = "/app/balPic.jpg";
+var pic = "https://github.com/Ironfacebuster/everythingbot/blob/master/balPic.png?raw=true";
 
 var defaultServer = {
 	"serverID":null,
