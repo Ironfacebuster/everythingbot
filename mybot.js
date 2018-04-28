@@ -737,7 +737,7 @@ V`).then(() => {
 		  return message.reply("sorry, you don't have permissions to use this.");
 	  
 	  if(args[0].length > 10){
-		  message.reply("your prefix can't be longer than 10 characters");
+		  message.reply("guild prefix can't be longer than 10 characters");
 	  } else {
 		mongo.connect(ServerURL, function(err, db) {
 			var dbo = db.db("servers");
