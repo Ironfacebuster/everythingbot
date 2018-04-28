@@ -22,5 +22,5 @@
   "engines": {
     "node": "8.11.1"
   },
-  "cacheDirectories": ["client/balancePicture"]
+  "cacheDirectories": ["client/node_modules", "server/node_modules"]
 }
