@@ -278,7 +278,7 @@ async function checkCommand (message, prefix) {
 	
 	if(command === "invert") {
 		if(args[0] == null){
-			invertFunction(message, args[0], message.author.avatarURL);
+			invertFunction(message, message.author.avatarURL);
 		} else invertFunction(message, args[0]);
 	}
 	
