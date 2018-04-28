@@ -756,6 +756,7 @@ V`).then(() => {
 function makeProfile (mes, money, xp, level, tag) {
 	console.log('It did it!');
 	Jimp.read(pic, function (err, image) {
+		if(err) throw err;
 		Jimp.loadFont (Jimp.FONT_SANS_32_WHITE).then(function(font) {
 			image.print(font,250,87, tag).getBuffer(Jimp.MIME_JPEG, function (err, img) {
 			if(err) throw err;
