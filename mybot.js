@@ -801,7 +801,7 @@ function makeProfile (mes, money, xp, level, tag) {
 	Jimp.read(pic, function (err, image) {
 		if(err) throw err;
 		Jimp.loadFont (fon).then(function(font) {
-			image.print(font,250,87, tag).getBuffer(Jimp.MIME_JPEG, function (err, img) {
+			image.print(font,process.env.NAME_X,process.env.NAME_Y, tag).getBuffer(Jimp.MIME_JPEG, function (err, img) {
 			if(err) throw err;
 				Jimp.loadFont (fonTwo).then(function(font) {
 					image.print(font,36,250, `XP ${xp} / ${level*150}`).getBuffer(Jimp.MIME_JPEG, function (err, img) {
