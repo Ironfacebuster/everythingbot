@@ -18,6 +18,45 @@ var pic = "https://github.com/Ironfacebuster/everythingbot/blob/master/balPic.pn
 var fon = ".fonts/bahnschrift.fnt";
 var fonTwo = ".fonts/FranklinGothicMedium.fnt";
 
+var helpMenu = {
+	embed: {
+      color: 3447003,
+      author: {
+        name: client.user.username,
+        icon_url: client.user.avatarURL
+      },
+      description: "EverythingBot, does literally everything (Still in production, currently doesn't do much). Here's the list of commands",
+      fields: [{
+          name: ":straight_ruler:  Admin/Mod",
+          value: "clear, kick, ban, unban, mute, unmute, setprefix"
+        },
+		{
+          name: ":camera:  Image commands",
+          value: "poster, sepia, greyscale, invert, flip, rotate, blur"
+        },
+        {
+          name: ":laughing: Fun commands",
+          value: "meme, pickup, insult, mock, kill, gayray"
+        },
+		{
+          name: ":briefcase: User commands",
+          value: "bal, pay"
+        },
+        {
+          name: ":regional_indicator_t: :regional_indicator_e: :regional_indicator_x: :regional_indicator_t:  commands",
+          value: "ping, say, bigtext, mention, announce, invite, server"
+        },
+		{
+          name: ":thinking: Etc commands",
+          value: "credits"
+        }
+      ],
+      footer: {
+        text: `This guild's prefix is: ${prefix}`
+      }
+	}
+}
+
 var defaultServer = {
 	"serverID":null,
 	"prefix":'e!'
@@ -176,39 +215,7 @@ async function mentionCommand (message, p){
 	const command = args.shift().toLowerCase();
 	
 	if(args[0] === "help"){
-		message.channel.send({embed: {
-      color: 3447003,
-      author: {
-        name: client.user.username,
-        icon_url: client.user.avatarURL
-      },
-      description: `Command example: ${prefix}bal`,
-      fields: [{
-          name: ":straight_ruler:  Admin/Mod",
-          value: "clear, kick, ban, unban, mute, unmute, setprefix"
-        },
-        {
-          name: ":laughing: Fun commands",
-          value: "meme, pickup, insult, mock, kill, gayray"
-        },
-		{
-          name: ":briefcase: User commands",
-          value: "bal, daily"
-        },
-        {
-          name: ":regional_indicator_t: :regional_indicator_e: :regional_indicator_x: :regional_indicator_t:  commands",
-          value: "ping, say, bigtext, mention, announce, invite, server"
-        },
-		{
-          name: ":thinking: Etc commands",
-          value: "credits"
-        }
-      ],
-      footer: {
-        text: `This guild's prefix is: ${prefix}`
-      }
-    }
-  });
+		message.channel.send(helpMenu);
 	}
 }
 
@@ -247,6 +254,19 @@ async function checkCommand (message, prefix) {
 				}
 			});
 		});
+	}
+	
+	if(command === "sepia") {
+		if(args[0] == null){
+			message.reply("please add an image or link to an image, and try again");
+			return;
+		}
+		if(message.attachments.length != 0){
+			var att = message.attachments;
+			sepia(message, att[0].url);
+		} else {
+			sepia(message, args[0]);	
+		}
 	}
 	
 	if (command === "welcomerole") {
@@ -760,39 +780,7 @@ V`).then(() => {
   }
   
 	if(command === "help") {
-    message.channel.send({embed: {
-      color: 3447003,
-      author: {
-        name: client.user.username,
-        icon_url: client.user.avatarURL
-      },
-      description: "EverythingBot, does literally everything (Still in production, currently doesn't do much). Here's the list of commands",
-      fields: [{
-          name: ":straight_ruler:  Admin/Mod",
-          value: "clear, kick, ban, unban, mute, unmute, setprefix"
-        },
-        {
-          name: ":laughing: Fun commands",
-          value: "meme, pickup, insult, mock, kill, gayray"
-        },
-		{
-          name: ":briefcase: User commands",
-          value: "bal, pay"
-        },
-        {
-          name: ":regional_indicator_t: :regional_indicator_e: :regional_indicator_x: :regional_indicator_t:  commands",
-          value: "ping, say, bigtext, mention, announce, invite, server"
-        },
-		{
-          name: ":thinking: Etc commands",
-          value: "credits"
-        }
-      ],
-      footer: {
-        text: `This guild's prefix is: ${prefix}`
-      }
-    }
-  });
+    message.channel.send(helpMenu);
   }
   
 }
@@ -821,5 +809,15 @@ function makeProfile (mes, money, xp, level, tag) {
 	});
 }
 
+function sepia (message, im) {
+	message.channel.startTyping(1);
+	Jimp.read(im, function (err, image) {
+		if(err) throw err;
+		image.sepia().write("/app/tempPic.jpg", function (err) {
+			if(err) throw err;
+			message.channel.send("", { files: ["/app/tempPic.jpg"]}).then(message.channel.stopTyping());
+		});
+	});
+}	
 
 client.login(process.env.BOT_TOKEN);
