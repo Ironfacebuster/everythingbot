@@ -21,10 +21,6 @@ var fonTwo = ".fonts/FranklinGothicMedium.fnt";
 var helpMenu = {
 	embed: {
       color: 3447003,
-      author: {
-        name: client.user.username,
-        icon_url: client.user.avatarURL
-      },
       description: "EverythingBot, does literally everything (Still in production, currently doesn't do much). Here's the list of commands",
       fields: [{
           name: ":straight_ruler:  Admin/Mod",
