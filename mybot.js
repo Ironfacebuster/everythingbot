@@ -939,6 +939,7 @@ function flipFunction (message, im) {
 }	
 
 function blurFunction (message, amount, im) {
+	message.channel.startTyping(1);
 	Jimp.read(im, function (err, image) {
 		message.channel.startTyping(1);
 		if(err) {
