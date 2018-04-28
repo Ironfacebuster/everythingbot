@@ -216,15 +216,16 @@ async function checkCommand (message, prefix) {
 			var dbo = db.db("users");
 			var query = { "name": message.author.tag };
 			dbo.collection("users").findOne(query, function (err, result) {
+				var d = new Date();
 				if(err) throw err;
 				if(result != null){
-					if(result.daily != new Date(year, month, day)){
+					if(result.daily != d.getDate()+d.getMonth()){
 						var ch = defaultUser;
 						message.reply(`you just gained ${result.level * 200} as your daily pay!`);
 						ch.xp = result.xp;
 						ch.level = result.level;
 						ch.money = result.money + (result.level * 200);
-						ch.daily = new Date(year, month, day);
+						ch.daily = d.getDate()+d.getMonth();
 						dbo.collection("users").update(query, ch, function (err, res) {
 							if(err) throw err;
 						});
