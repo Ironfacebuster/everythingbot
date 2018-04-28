@@ -14,7 +14,7 @@ const client = new Discord.Client();
 
 var prefix = 'e!';
 
-var pic = "balancePicture\tempBal.jpg";
+var pic = "balancePicture/balPic.jpg";
 
 var defaultServer = {
 	"serverID":null,
@@ -113,8 +113,8 @@ client.on("message", async message => {
 		});
 	});
 	
-	if(message.mentions.members.first().user.id===client.user.id){
-		mentionCommand (message, message.mentions.members.first());
+	if(message.mentions.members.first()){
+		if(message.mentions.members.first().user.id===client.user.id) mentionCommand (message, message.mentions.members.first());
 	}
 });
 
@@ -767,8 +767,8 @@ function makeProfile (mes, money, xp, level, tag) {
 							if(err) throw err;
 							image.print(font,36,410, `$${money}`).getBuffer(Jimp.MIME_JPEG, function (err, img) {
 								if(err) throw err;
-								image.scale(0.35).write("balancePicture\tempBal.jpg");
-								mes.channel.send("", { files: ["balancePicture\tempBal.jpg"]}).then(console.log('Message sent'));
+								image.scale(0.35).write("balancePicture/tempBal.jpg");
+								mes.channel.send("", { files: ["balancePicture/tempBal.jpg"]}).then(console.log('Message sent'));
 							});
 						});
 					});
