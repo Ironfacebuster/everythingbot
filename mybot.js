@@ -1,6 +1,7 @@
 
 const Discord = require("discord.js");
 const Attachment = require("discord.js").Attachment;
+const Storage = require("@google-cloud/storage");
 var ms = require("ms");
 var mongo = require("mongodb").MongoClient;
 var welcomerole = false;
@@ -12,6 +13,8 @@ var ServerURL = process.env.SERVER;
 const client = new Discord.Client();
 
 var prefix = 'e!';
+
+var pic = "balancePicture\tempBal.jpg";
 
 var defaultServer = {
 	"serverID":null,
@@ -763,8 +766,8 @@ function makeProfile (mes, money, xp, level, tag) {
 							if(err) throw err;
 							image.print(font,36,410, `$${money}`).getBuffer(Jimp.MIME_JPEG, function (err, img) {
 								if(err) throw err;
-								image.scale(0.35).write("tempBal.jpg");
-								mes.channel.send("", { files: ["tempBal.jpg"]}).then(console.log('Message sent'));
+								image.scale(0.35).write("balancePicture\tempBal.jpg");
+								mes.channel.send("", { files: ["balancePicture\tempBal.jpg"]}).then(console.log('Message sent'));
 							});
 						});
 					});
