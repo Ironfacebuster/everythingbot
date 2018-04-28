@@ -6,8 +6,8 @@ var mongo = require("mongodb").MongoClient;
 var welcomerole = false;
 
 //MongoDB URL
-var UserURL = "mongodb://Ironfacebuster:Greenetech1@ds259109.mlab.com:59109/users";
-var ServerURL = "mongodb://Ironfacebuster:Greenetech1@ds014368.mlab.com:14368/servers";
+var UserURL = process.env.USER;
+var ServerURL = process.env.SERVER;
 //Discord.js Client
 const client = new Discord.Client();
 
