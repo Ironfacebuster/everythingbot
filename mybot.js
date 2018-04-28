@@ -298,11 +298,11 @@ async function checkCommand (message, prefix) {
 	}
 	
 	if(command === "blur") {
-		if(args[0] == null){
+		if(args[1] == null){
 			message.reply("please add a link to an image, and try again");
 			return;
 		}
-		var Attachments = message.attachments;
+		//var Attachments = message.attachments;
 		blurFunction(message, args[0], args[1]);
 	}
 	
