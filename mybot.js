@@ -1,7 +1,6 @@
 
 const Discord = require("discord.js");
 const Attachment = require("discord.js").Attachment;
-const Storage = require("@google-cloud/storage");
 var ms = require("ms");
 var mongo = require("mongodb").MongoClient;
 var welcomerole = false;
