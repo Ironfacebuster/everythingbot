@@ -733,7 +733,7 @@ V`).then(() => {
   }
   
 	if(command === "setprefix"){
-	  if(!message.member.hasPermission("ADMINISTRATOR")) {
+	  if(!message.member.hasPermission("ADMINISTRATOR"))
 		  return message.reply("sorry, you don't have permissions to use this.");
 	  
 	  if(args[0].length > 10){
@@ -754,6 +754,7 @@ V`).then(() => {
 			});
 		});
 	  }
+	  
   }
   
 	if(command === "help") {
