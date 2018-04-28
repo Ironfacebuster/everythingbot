@@ -639,12 +639,14 @@ V`).then(() => {
 		var ID;
 		if(args[0] == null){
 			ID = message.author.id;
+			tags = message.author.tag;
 			query = { name: message.author.tag };
 		} else {
 			if(args[0].toString().includes('@')){
 				if(args[0]!='@here'&&args[0]!='@everyone'&&args[0]!='@someone'){
 					ID = args[0].replace(/[<@!>]/g, '');
 					if(client.users.get(ID)){
+						tags = message.guild.member(ID).user.tag;
 						query = { name: message.guild.member(ID).user.tag };
 					}
 				}
@@ -654,6 +656,8 @@ V`).then(() => {
 			if(err) throw err;
 			var cha = result;
 			if(cha != null){
+				makeProfile(message,cha.money,cha.xp,cha.level,tags);
+				/*
 				message.channel.send({
 					"embed": {
 						"title": `${message.guild.member(ID).user.username}'s stats`,
@@ -677,6 +681,7 @@ V`).then(() => {
 						}]
 					}
 				});
+				*/
 			} else {
 				if(args[0] != null){
 					message.reply("this user isn't registered yet, have them try some other commands first!");
@@ -744,5 +749,30 @@ V`).then(() => {
   }
   
 }
+
+function makeProfile (mes, money, xp, level, tag) {
+	console.log('It did it!');
+	Jimp.read(pic, function (err, image) {
+		Jimp.loadFont (Jimp.FONT_SANS_32_WHITE).then(function(font) {
+			image.print(font,250,87, tag).getBuffer(Jimp.MIME_JPEG, function (err, img) {
+			if(err) throw err;
+				Jimp.loadFont (Jimp.FONT_SANS_64_WHITE).then(function(font) {
+					image.print(font,36,250, `XP ${xp} / ${level*150}`).getBuffer(Jimp.MIME_JPEG, function (err, img) {
+						if(err) throw err;
+						image.print(font,36,330, `Level ${level}`).getBuffer(Jimp.MIME_JPEG, function (err, img) {
+							if(err) throw err;
+							image.print(font,36,410, `$${money}`).getBuffer(Jimp.MIME_JPEG, function (err, img) {
+								if(err) throw err;
+								image.scale(0.35).write("tempBal.jpg");
+								mes.channel.send("", { files: ["tempBal.jpg"]}).then(console.log('Message sent'));
+							});
+						});
+					});
+				});
+			});
+		});
+	});
+}
+
 
 client.login(process.env.BOT_TOKEN);
