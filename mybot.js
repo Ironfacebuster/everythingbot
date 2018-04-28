@@ -940,12 +940,13 @@ function flipFunction (message, im) {
 
 function blurFunction (message, amount, im) {
 	Jimp.read(im, function (err, image) {
+		message.channel.startTyping(1);
 		if(err) {
+			message.channel.stopTyping();
 			console.log(err);
 			message.reply('are you sure this is a link?');
 			//catch(err);
 		} else {
-			message.channel.startTyping(1);
 			image.blur(parseInt(amount), function (err, image) {
 				if(err) message.reply(err);
 				image.write("/app/tempPic.png", function (err) {
