@@ -1,6 +1,7 @@
 
 const Discord = require("discord.js");
 const Attachment = require("discord.js").Attachment;
+var Jimp = require("jimp");
 var ms = require("ms");
 var mongo = require("mongodb").MongoClient;
 var welcomerole = false;
