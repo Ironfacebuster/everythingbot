@@ -182,7 +182,7 @@ async function mentionCommand (message, p){
         name: client.user.username,
         icon_url: client.user.avatarURL
       },
-      description: "EverythingBot, does literally everything (Still in production, currently doesn't do much). Here's the list of commands",
+      description: `Command usage: ${prefix}bal`,
       fields: [{
           name: ":straight_ruler:  Admin/Mod",
           value: "clear, kick, ban, unban, mute, unmute, setprefix"
@@ -193,7 +193,7 @@ async function mentionCommand (message, p){
         },
 		{
           name: ":briefcase: User commands",
-          value: "bal, pay"
+          value: "bal, daily"
         },
         {
           name: ":regional_indicator_t: :regional_indicator_e: :regional_indicator_x: :regional_indicator_t:  commands",
