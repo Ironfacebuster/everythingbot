@@ -14,7 +14,7 @@ const client = new Discord.Client();
 
 var prefix = 'e!';
 
-var pic = "balPic.jpg";
+var pic = "/app/balPic.jpg";
 
 var defaultServer = {
 	"serverID":null,
@@ -767,8 +767,8 @@ function makeProfile (mes, money, xp, level, tag) {
 							if(err) throw err;
 							image.print(font,36,410, `$${money}`).getBuffer(Jimp.MIME_JPEG, function (err, img) {
 								if(err) throw err;
-								image.scale(0.35).write("tempBal.jpg");
-								mes.channel.send("", { files: ["tempBal.jpg"]}).then(console.log('Message sent'));
+								image.scale(0.35).write("/app/tempBal.jpg");
+								mes.channel.send("", { files: ["/app/tempBal.jpg"]}).then(console.log('Message sent'));
 							});
 						});
 					});
