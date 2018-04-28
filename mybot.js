@@ -254,56 +254,40 @@ async function checkCommand (message, prefix) {
 	
 	if(command === "sepia") {
 		if(args[0] == null){
-			message.reply("please add a link to an image, and try again");
-			return;
-		}
-		var Attachments = message.attachments;
-		sepiaFunction(message, args[0]);
+			sepiaFunction(message, message.author.avatarURL);
+		} else sepiaFunction(message, args[0]);
 	}
 	
 	if(command === "poster") {
 		if(args[0] == null){
-			message.reply("please add a link to an image, and try again");
-			return;
-		}
-		var Attachments = message.attachments;
-		posterFunction(message, args[0]);
+			posterFunction(message, message.author.avatarURL);
+		} else posterFunction(message, args[0]);
 	}
 	
 	if(command === "mirror") {
 		if(args[0] == null){
-			message.reply("please add a link to an image, and try again");
-			return;
-		}
-		var Attachments = message.attachments;
-		mirrorFunction(message, args[0]);
+			mirrorFunction(message, message.author.avatarURL);
+		} else mirrorFunction(message, args[0]);
 	}
 	
 	if(command === "flip") {
 		if(args[0] == null){
-			message.reply("please add a link to an image, and try again");
-			return;
-		}
-		var Attachments = message.attachments;
-		flipFunction(message, args[0]);
+			flipFunction(message, message.author.avatarURL);
+		} else flipFunction(message, args[0]);
 	}
 	
 	if(command === "invert") {
 		if(args[0] == null){
-			message.reply("please add a link to an image, and try again");
-			return;
-		}
-		var Attachments = message.attachments;
-		invertFunction(message, args[0]);
+			invertFunction(message, args[0], message.author.avatarURL);
+		} else invertFunction(message, args[0]);
 	}
 	
 	if(command === "blur") {
 		if(args[1] == null){
-			message.reply("please add a link to an image, and try again");
-			return;
-		}
+			blurFunction(message, args[0], message.author.avatarURL);
+		} else blurFunction(message, args[0], args[1]);
 		//var Attachments = message.attachments;
-		blurFunction(message, args[0], args[1]);
+		
 	}
 	
 	if (command === "welcomerole") {
