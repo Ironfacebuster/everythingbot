@@ -26,6 +26,7 @@ var defaultUser = {
 	"money":0,
 	"xp":0,
 	"level":1,
+	"daily":null
 }
 
 mongo.connect(UserURL, function(err, db) {
@@ -209,6 +210,29 @@ async function checkCommand (message, prefix) {
 	const args = message.content.slice(prefix.length).trim().split(/ +/g);
 	const command = args.shift().toLowerCase();
 	var col = null;
+	
+	if(command === "daily") {
+		mongo.connect(UserURL, function(err, db) {
+			var dbo = db.db("users");
+			var query = { "name": message.author.tag };
+			dbo.collection("users").findOne(query, function (err, result) {
+				if(err) throw err;
+				if(result != null){
+					if(result.daily != new Date(year, month, day)){
+						var ch = defaultUser;
+						message.reply(`you just gained ${result.level * 200} as your daily pay!`);
+						ch.xp = result.xp;
+						ch.level = result.level;
+						ch.money = result.money + (result.level * 200);
+						ch.daily = new Date(year, month, day);
+						dbo.collection("users").update(query, ch, function (err, res) {
+							if(err) throw err;
+						});
+					}
+				}
+			});
+		});
+	}
 	
 	if (command === "welcomerole") {
     const sayMessage = args.join(" ");
@@ -754,7 +778,6 @@ V`).then(() => {
 }
 
 function makeProfile (mes, money, xp, level, tag) {
-	console.log('It did it!');
 	Jimp.read(pic, function (err, image) {
 		if(err) throw err;
 		Jimp.loadFont (Jimp.FONT_SANS_32_WHITE).then(function(font) {
@@ -768,7 +791,7 @@ function makeProfile (mes, money, xp, level, tag) {
 							image.print(font,36,410, `$${money}`).getBuffer(Jimp.MIME_JPEG, function (err, img) {
 								if(err) throw err;
 								image.scale(0.35).write("/app/tempBal.jpg");
-								mes.channel.send("", { files: ["/app/tempBal.jpg"]}).then(console.log('Message sent'));
+								mes.channel.send("", { files: ["/app/tempBal.jpg"]}).then(console.log('Balance picture sent'));
 							});
 						});
 					});
