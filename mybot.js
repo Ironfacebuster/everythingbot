@@ -325,8 +325,7 @@ async function checkCommand (message, prefix) {
           value: `${Math.round(client.ping)}ms`
         }
 		]
-	}
-}
+	}});
    // m.edit(`Pong! Ping is ${m.createdTimestamp - message.createdTimestamp}ms. API ping is ${Math.round(client.ping)}ms`);
   }
 
