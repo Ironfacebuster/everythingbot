@@ -360,7 +360,7 @@ async function checkCommand (message, prefix) {
   }
 
 	if(command === "bigtext") {
-		if(args[0] == ""){
+		if(args[0] == null){
 			message.reply("I can't make nothing into :regional_indicator_b: :regional_indicator_i: :regional_indicator_g: text!");
 			return;
 		}
