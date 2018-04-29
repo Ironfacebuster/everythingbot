@@ -264,7 +264,7 @@ async function checkCommand (message, prefix) {
 	if(command === "poster") {
 		if(message.mentions.members.first()!==null) {
 			posterFunction(message, args[0], message.mentions.members.first().user.avatarURL);
-		} else if(args[1] == null) {
+		} else if(args[1] == null && args[0] != null) {
 			posterFunction(message, args[0], message.author.avatarURL); 
 		}  else if(args[0] != null) {
 			posterFunction(message, args[0], args[1]);	
@@ -309,7 +309,7 @@ async function checkCommand (message, prefix) {
 	if(command === "blur") {
 		if(message.mentions.members.first()!==null) {
 			blurFunction(message, args[0], message.mentions.members.first().user.avatarURL);
-		} else if(args[1] == null) {
+		} else if(args[1] == null && args[0] != null) {
 			blurFunction(message, args[0], message.author.avatarURL); 
 		} else if(args[0] != null) {
 			blurFunction(message, args[0], args[1]);	
@@ -321,7 +321,7 @@ async function checkCommand (message, prefix) {
 	if(command === "rotate") {
 		if(message.mentions.members.first()) {
 			rotateFunction(message, args[0], message.mentions.members.first().user.avatarURL);
-		} else if(args[1] == null) {
+		} else if(args[1] == null && args[0] != null) {
 			rotateFunction(message, args[0], message.author.avatarURL); 
 		} else if(args[0] != null) {
 			rotateFunction(message, args[0], args[1]);
