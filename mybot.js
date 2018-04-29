@@ -892,10 +892,10 @@ function posterFunction (message, f,im) {
 			message.reply('are you sure this is a link?');
 			//catch(err);
 		} else {
-			var r = parseFloat(f);
+			var r = Math.abs(parseFloat(f));
 			if(typeof r != "NaN"){
 				message.channel.startTyping(1);
-				image.posterize(parseFloat(f),function (err, image) {
+				image.posterize(r,function (err, image) {
 					image.write("/app/tempPic.png", function (err) {
 						if(err) throw err;
 						message.channel.send("", { files: ["/app/tempPic.png"]}).then(message.channel.stopTyping());
@@ -990,9 +990,9 @@ function blurFunction (message, amount, im) {
 			message.reply('are you sure this is a link?');
 			//catch(err);
 		} else {
-			var a = parseInt (amount);
+			var a = Math.abs(parseInt (amount));
 			if(typeof a != "NaN"){
-				image.blur(parseInt(amount), function (err, image) {
+				image.blur(a, function (err, image) {
 					if(err) message.reply(err);
 					image.write("/app/tempPic.png", function (err) {
 						if(err) throw err;
@@ -1018,7 +1018,7 @@ function rotateFunction (message, degrees, im) {
 			var p = parseFloat(degrees);
 			console.log(typeof p);
 			if(typeof p != "NaN"){
-				image.rotate(parseFloat(degrees), true, function(err){
+				image.rotate(p, true, function(err){
 					if(err) {
 						message.reply(`you've done something wrong! Are you sure you did ${prefix}rotate [degrees] [link/user]?`);
 						throw err;
