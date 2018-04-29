@@ -916,7 +916,7 @@ function sendEmbed (m, result, money) {
 				},
 				{
 				name: `4: ${result[3].name}`,
-				value: Level: `${result[3].level}`
+				value: `Level: ${result[3].level}`
 				},
 				{
 				name: `5: ${result[4].name}`,
