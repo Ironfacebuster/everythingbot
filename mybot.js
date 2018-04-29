@@ -269,7 +269,7 @@ async function checkCommand (message, prefix) {
 		}  else if(args[0] != null) {
 			posterFunction(message, args[0], args[1]);	
 		} else {
-			message.reply(`you've done something wrong! Are you sure you did ${prefix}!poster [amount] [link/user]?`);
+			message.reply(`you've done something wrong! Are you sure you did ${prefix}poster [amount] [link/user]?`);
 		}
 
 	}
