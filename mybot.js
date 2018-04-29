@@ -282,6 +282,12 @@ async function checkCommand (message, prefix) {
 		} else invertFunction(message, args[0]);
 	}
 	
+	if(command === "greyscale") {
+		if(args[0] == null){
+			greyscaleFunction(message, message.author.avatarURL);
+		} else greyscaleFunction(message, args[0]);
+	}
+	
 	if(command === "blur") {
 		if(args[1] == null){
 			blurFunction(message, args[0], message.author.avatarURL);
