@@ -992,16 +992,20 @@ function rotateFunction (message, degrees, im) {
 			message.reply('are you sure this is a link?');
 			//catch(err);
 		} else {
-			image.rotate(parseFloat(degrees), true, function(err){
-				if(err) { 
-					message.reply("you've done something wrong! Are you sure you did `e!rotate [degrees] [link/user]`?");
-					return;
-				}
-				image.write("/app/tempPic.png", function (err) {
-					if(err) throw err;
-					message.channel.send("", { files: ["/app/tempPic.png"]}).then(message.channel.stopTyping());
+			if(parseFloat(degrees) != null){
+				image.rotate(parseFloat(degrees), true, function(err){
+					if(err) { 
+						message.reply("you've done something wrong! Are you sure you did `e!rotate [degrees] [link/user]`?");
+						throw err;
+					}
+					image.write("/app/tempPic.png", function (err) {
+						if(err) throw err;
+						message.channel.send("", { files: ["/app/tempPic.png"]}).then(message.channel.stopTyping());
+					});
 				});
-			});
+			} else {
+				message.reply("you've done something wrong! Are you sure you did `e!rotate [degrees] [link/user]`?");
+			}
 		}
 	});
 }
