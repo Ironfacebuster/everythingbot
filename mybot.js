@@ -166,7 +166,7 @@ client.on("message", async message => {
 			var query = { "name": message.author.tag };
 			dbo.collection("users").findOne(query, function (err, result) {
 				if(err) throw err;
-				if(result != null){
+				if(result !== null){
 					var upd = result;
 					upd.xp = result.xp + Math.floor(Math.random()*5)+1;
 					dbo.collection("users").update(query, upd, function (err, res){
@@ -182,7 +182,7 @@ client.on("message", async message => {
 		var query = { "name": message.author.tag };
 		dbo.collection("users").findOne(query, function (err, result) {
 			if(err) throw err;
-			if(result != null){
+			if(result !== null){
 				var upd = result;
 				if(result.xp > Math.floor(result.level * 150)){
 					message.reply(`you've leveled up! Your new level is ${upd.level + 1}.`);
@@ -190,6 +190,7 @@ client.on("message", async message => {
 					upd.level += 1;
 					dbo.collection("users").update(query, upd, function (err, res){
 						if(err) throw err;
+						db.close();
 					});
 				}
 			} else {
@@ -770,31 +771,6 @@ V`).then(() => {
 			var cha = result;
 			if(cha != null){
 				makeProfile(message,cha.money,cha.xp,cha.level,tags);
-				/*
-				message.channel.send({
-					"embed": {
-						"title": `${message.guild.member(ID).user.username}'s stats`,
-						"color": 7510071,
-						"timestamp": new Date(),
-						"footer": {
-							"text": "EverythingBot"
-						},
-						"fields": [
-						{
-							"name": "Money",
-							"value": cha.money
-						},
-						{
-							"name": "Level",
-							"value": cha.level
-						},
-						{
-							"name": "XP",
-							"value": cha.xp
-						}]
-					}
-				});
-				*/
 			} else {
 				if(args[0] != null){
 					message.reply("this user isn't registered yet, have them try some other commands first!");
