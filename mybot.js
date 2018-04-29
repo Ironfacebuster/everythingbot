@@ -893,7 +893,7 @@ function posterFunction (message, f,im) {
 			//catch(err);
 		} else {
 			var r = parseFloat(f);
-			if(typeof r == "NaN"){
+			if(typeof r != "NaN"){
 				message.channel.startTyping(1);
 				image.posterize(parseFloat(f),function (err, image) {
 					image.write("/app/tempPic.png", function (err) {
@@ -991,7 +991,7 @@ function blurFunction (message, amount, im) {
 			//catch(err);
 		} else {
 			var a = parseInt (amount);
-			if(typeof a == "NaN"){
+			if(typeof a != "NaN"){
 				image.blur(parseInt(amount), function (err, image) {
 					if(err) message.reply(err);
 					image.write("/app/tempPic.png", function (err) {
