@@ -878,23 +878,23 @@ function sendEmbed (channel, result, money) {
       description: "Money leaderboard",
       fields: [{
           name: `1: ${result[0].name}`,
-          value: `$ ${result[0].money`
+          value: `$ ${result[0].money}`
         },
 		{
           name: `2: ${result[1].name}`,
-          value: `$ ${result[1].money`
+          value: `$ ${result[1].money}`
         },
         {
           name: `3: ${result[2].name}`,
-          value: `$ ${result[2].money`
+          value: `$ ${result[2].money}`
         },
 		{
           name: `4: ${result[3].name}`,
-          value: `$ ${result[3].money`
+          value: `$ ${result[3].money}`
         },
         {
           name: `5: ${result[4].name}`,
-          value: `$ ${result[4].money`
+          value: `$ ${result[4].money}`
         }
       ]
 	}});
@@ -912,15 +912,15 @@ function sendEmbed (channel, result, money) {
 				},
 				{
 				name: `3: ${result[2].name}`,
-				value: `${result[2].level`
+				value: `${result[2].level}`
 				},
 				{
 				name: `4: ${result[3].name}`,
-				value: `${result[3].level`
+				value: `${result[3].level}`
 				},
 				{
 				name: `5: ${result[4].name}`,
-				value: `${result[4].level`
+				value: `${result[4].level}`
 				}
 			]
 		}});
