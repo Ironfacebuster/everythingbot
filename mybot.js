@@ -228,7 +228,7 @@ async function checkCommand (message, prefix) {
 	
 	if(command === "leaderboard"){
 		if(args[0] === "money") {
-			MongoClient.connect(UserURL, function(err, dbo) {
+			mongo.connect(UserURL, function(err, dbo) {
 				if(err) message.reply("error connecting to server!");
 				var dbo = db.db("users");
 				var sort = { "money": 1 };
@@ -239,7 +239,7 @@ async function checkCommand (message, prefix) {
 				});
 			});
 		} else if (args[0] === "level") {
-			MongoClient.connect(UserURL, function(err, dbo) {
+			mongo.connect(UserURL, function(err, dbo) {
 				if(err) message.reply("error connecting to server!");
 				var dbo = db.db("users");
 				var sort = { "level": 1 };
