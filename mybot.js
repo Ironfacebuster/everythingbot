@@ -877,23 +877,23 @@ function sendEmbed (channel, result, money) {
       color: 3447003,
       description: "Money leaderboard",
       fields: [{
-          name: `#1 ${result[0].name}`,
+          name: `1: ${result[0].name}`,
           value: `$ ${result[0].money`
         },
 		{
-          name: `#2 ${result[1].name}`,
+          name: `2: ${result[1].name}`,
           value: `$ ${result[1].money`
         },
         {
-          name: `#3 ${result[2].name}`,
+          name: `3: ${result[2].name}`,
           value: `$ ${result[2].money`
         },
 		{
-          name: `#4 ${result[3].name}`,
+          name: `4: ${result[3].name}`,
           value: `$ ${result[3].money`
         },
         {
-          name: `#5 ${result[4].name}`,
+          name: `5: ${result[4].name}`,
           value: `$ ${result[4].money`
         }
       ]
@@ -903,23 +903,23 @@ function sendEmbed (channel, result, money) {
 			color: 3447003,
 			description: "Level leaderboard",
 			fields: [{
-				name: `#1 ${result[0].name}`,
+				name: `1: ${result[0].name}`,
 				value: `${result[0].level`
 				},
 				{
-				name: `#2 ${result[1].name}`,
+				name: `2: ${result[1].name}`,
 				value: `${result[1].level`
 				},
 				{
-				name: `#3 ${result[2].name}`,
+				name: `3: ${result[2].name}`,
 				value: `${result[2].level`
 				},
 				{
-				name: `#4 ${result[3].name}`,
+				name: `4: ${result[3].name}`,
 				value: `${result[3].level`
 				},
 				{
-				name: `#5 ${result[4].name}`,
+				name: `5: ${result[4].name}`,
 				value: `${result[4].level`
 				}
 			]
