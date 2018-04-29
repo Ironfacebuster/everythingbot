@@ -254,7 +254,7 @@ async function checkCommand (message, prefix) {
 	}
 	
 	if(command === "sepia") {
-		if(message.mentions.members.first()!==null) {
+		if(message.mentions.members.first()) {
 			sepiaFunction(message, message.mentions.members.first().user.avatarURL);
 		} else if(args[0] == null) {
 			sepiaFunction(message, message.author.avatarURL); 
@@ -262,7 +262,7 @@ async function checkCommand (message, prefix) {
 	}
 	
 	if(command === "poster") {
-		if(message.mentions.members.first()!==null) {
+		if(message.mentions.members.first()) {
 			posterFunction(message, args[0], message.mentions.members.first().user.avatarURL);
 		} else if(args[1] == null && args[0] != null) {
 			posterFunction(message, args[0], message.author.avatarURL); 
@@ -275,7 +275,7 @@ async function checkCommand (message, prefix) {
 	}
 	
 	if(command === "mirror") {
-		if(message.mentions.members.first()!==null) {
+		if(message.mentions.members.first()) {
 			mirrorFunction(message, message.mentions.members.first().user.avatarURL);
 		} else if(args[0] == null) {
 			mirrorFunction(message, message.author.avatarURL); 
@@ -283,7 +283,7 @@ async function checkCommand (message, prefix) {
 	}
 	
 	if(command === "flip") {
-		if(message.mentions.members.first()!==null) {
+		if(message.mentions.members.first()) {
 			flipFunction(message, message.mentions.members.first().user.avatarURL);
 		} else if(args[0] == null) {
 			flipFunction(message, message.author.avatarURL); 
@@ -291,7 +291,7 @@ async function checkCommand (message, prefix) {
 	}
 	
 	if(command === "invert") {
-		if(message.mentions.members.first()!==null) {
+		if(message.mentions.members.first()) {
 			invertFunction(message, message.mentions.members.first().user.avatarURL);
 		} else if(args[0] == null) {
 			invertFunction(message, message.author.avatarURL); 
@@ -299,7 +299,7 @@ async function checkCommand (message, prefix) {
 	}
 	
 	if(command === "greyscale") {
-		if(message.mentions.members.first()!==null) {
+		if(message.mentions.members.first()) {
 			greyscaleFunction(message, message.mentions.members.first().user.avatarURL);
 		} else if(args[0] == null) {
 			greyscaleFunction(message, message.author.avatarURL); 
@@ -307,7 +307,7 @@ async function checkCommand (message, prefix) {
 	}
 	
 	if(command === "blur") {
-		if(message.mentions.members.first()!==null) {
+		if(message.mentions.members.first()) {
 			blurFunction(message, args[0], message.mentions.members.first().user.avatarURL);
 		} else if(args[1] == null && args[0] != null) {
 			blurFunction(message, args[0], message.author.avatarURL); 
