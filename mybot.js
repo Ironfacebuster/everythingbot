@@ -871,9 +871,9 @@ V`).then(() => {
   
 }
 
-function sendEmbed (channel, result, money) {
+function sendEmbed (m, result, money) {
 	if(money == true) {
-	message.channel.send ({embed: {
+	m.channel.send ({embed: {
       color: 3447003,
       description: "Money leaderboard",
       fields: [{
@@ -899,7 +899,7 @@ function sendEmbed (channel, result, money) {
       ]
 	}});
 	} else {
-		message.channel.send ({embed: {
+		m.channel.send ({embed: {
 			color: 3447003,
 			description: "Level leaderboard",
 			fields: [{
