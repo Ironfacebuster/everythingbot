@@ -998,7 +998,7 @@ function rotateFunction (message, degrees, im) {
 			message.reply('are you sure this is a link?');
 			//catch(err);
 		} else {
-			image.rotate(degrees, true, function(err){
+			image.rotate(parseFloat(degrees), true, function(err){
 				if(err) throw err;
 				image.write("/app/tempPic.png", function (err) {
 					if(err) throw err;
