@@ -886,14 +886,13 @@ function sepiaFunction (message, im) {
 }	
 
 function posterFunction (message, f,im) {
-	Jimp.read(im, function (err, image) {
-		if(err) {
-			console.log(err);
-			message.reply('are you sure this is a link?');
-			//catch(err);
-		} else {
-			var r = Math.abs(parseFloat(f));
-			if(r != NaN){
+	var r = Math.abs(parseFloat(f));
+	if(r != NaN){
+		Jimp.read(im, function (err, image) {
+			if(err) {
+				console.log(err);
+				message.reply('are you sure this is a link?');
+			} else {
 				message.channel.startTyping(1);
 				image.posterize(r,function (err, image) {
 					image.write("/app/tempPic.png", function (err) {
@@ -901,11 +900,11 @@ function posterFunction (message, f,im) {
 						message.channel.send("", { files: ["/app/tempPic.png"]}).then(message.channel.stopTyping());
 					});
 				});
-			} else {
-				message.reply(`you've done something wrong! Are you sure you did ${prefix}poster [intensity] [link/user]?`);
 			}
-		}
-	});
+		});
+	} else {
+		message.reply(`you've done something wrong! Are you sure you did ${prefix}poster [intensity] [link/user]?`);
+	}
 }	
 
 function greyscaleFunction (message, im) {
@@ -982,16 +981,15 @@ function flipFunction (message, im) {
 
 function blurFunction (message, amount, im) {
 	message.channel.startTyping(1);
-	Jimp.read(im, function (err, image) {
-		message.channel.startTyping(1);
-		if(err) {
-			message.channel.stopTyping();
-			console.log(err);
-			message.reply('are you sure this is a link?');
-			//catch(err);
-		} else {
-			var a = Math.abs(parseInt (amount));
-			if(a != NaN){
+	var a = Math.abs(parseInt (amount));
+	if(a != NaN){
+		Jimp.read(im, function (err, image) {
+			message.channel.startTyping(1);
+			if(err) {
+				message.channel.stopTyping();
+				console.log(err);
+				message.reply('are you sure this is a link?');
+			} else {
 				image.blur(a, function (err, image) {
 					if(err) message.reply(err);
 					image.write("/app/tempPic.png", function (err) {
@@ -999,40 +997,41 @@ function blurFunction (message, amount, im) {
 						message.channel.send("", { files: ["/app/tempPic.png"]}).then(message.channel.stopTyping());
 					});
 				});
-			} else {
-				message.reply(`you've done something wrong! Are you sure you did ${prefix}blur [amount] [link/user]?`);
 			}
-		}
-	});
+		});
+	} else {
+				message.reply(`you've done something wrong! Are you sure you did ${prefix}blur [amount] [link/user]?`);
+	}
 }	
 
 function rotateFunction (message, degrees, im) {
 	message.channel.startTyping(1);
-	Jimp.read(im, function (err, image) {
-		if(err) {
-			message.channel.stopTyping();
-			console.log(err);
-			message.reply('are you sure this is a link?');
-			//catch(err);
-		} else {
-			var p = parseFloat(degrees);
-			console.log(p);
-			if(p != NaN){
-				image.rotate(p, true, function(err){
-					if(err) {
-						message.reply(`you've done something wrong! Are you sure you did ${prefix}rotate [degrees] [link/user]?`);
-						throw err;
-					}
-					image.write("/app/tempPic.png", function (err) {
-						if(err) throw err;
-						message.channel.send("", { files: ["/app/tempPic.png"]}).then(message.channel.stopTyping());
-					});
-				});
+	var p = parseFloat(degrees);
+	console.log(p);
+	if(p !== NaN){
+		Jimp.read(im, function (err, image) {
+			if(err) {
+				message.channel.stopTyping();
+				console.log(err);
+				message.reply('are you sure this is a link?');
 			} else {
-				message.reply(`you've done something wrong! Are you sure you did ${prefix}rotate [degrees] [link/user]?`);
+					image.rotate(p, true, function(err){
+						if(err) {
+							message.reply(`you've done something wrong! Are you sure you did ${prefix}rotate [degrees] [link/user]?`);
+							throw err;
+						}
+						image.write("/app/tempPic.png", function (err) {
+							if(err) throw err;
+							message.channel.send("", { files: ["/app/tempPic.png"]}).then(message.channel.stopTyping());
+						});
+					});
 			}
-		}
-	});
+		});
+	} else {
+		message.reply(`you've done something wrong! Are you sure you did ${prefix}rotate [degrees] [link/user]?`);
+	}
+
 }
 
 client.login(process.env.BOT_TOKEN);
+
