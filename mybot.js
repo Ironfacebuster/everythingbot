@@ -1002,8 +1002,8 @@ function rotateFunction (message, degrees, im) {
 			message.reply('are you sure this is a link?');
 			//catch(err);
 		} else {
-			console.log(parseFloat(degrees));
 			var p = parseFloat(degrees);
+			console.log(typeof p);
 			if(typeof p === "number" && typeof p !== "undefined" && typeof p !== "object"){
 				image.rotate(parseFloat(degrees), true, function(err){
 					if(err) { 
