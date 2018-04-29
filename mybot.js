@@ -879,7 +879,8 @@ function posterFunction (message, f,im) {
 			message.reply('are you sure this is a link?');
 			//catch(err);
 		} else {
-			if(typeof parseFloat(f) === "number"){
+			var r = parseFloat(f);
+			if(typeof r === "number" && typeof r !== "undefined" && typeof r !== "object"){
 				message.channel.startTyping(1);
 				image.posterize(parseFloat(f),function (err, image) {
 					image.write("/app/tempPic.png", function (err) {
@@ -976,7 +977,8 @@ function blurFunction (message, amount, im) {
 			message.reply('are you sure this is a link?');
 			//catch(err);
 		} else {
-			if(typeof parseInt(amount) === "number"){
+			var a = parseInt (amount);
+			if(typeof a === "number" && typeof a !== "undefined" && typeof a !== "object"){
 				image.blur(parseInt(amount), function (err, image) {
 					if(err) message.reply(err);
 					image.write("/app/tempPic.png", function (err) {
@@ -1001,7 +1003,8 @@ function rotateFunction (message, degrees, im) {
 			//catch(err);
 		} else {
 			console.log(parseFloat(degrees));
-			if(typeof parseFloat(degrees) === "number"){
+			var p = parseFloat(degrees);
+			if(typeof p === "number" && typeof p !== "undefined" && typeof p !== "object"){
 				image.rotate(parseFloat(degrees), true, function(err){
 					if(err) { 
 						message.reply("you've done something wrong! Are you sure you did `e!rotate [degrees] [link/user]`?");
