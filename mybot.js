@@ -36,7 +36,7 @@ var helpMenu = {
         },
 		{
           name: ":briefcase: User commands",
-          value: "bal, pay"
+          value: "bal, daily, leaderboard"
         },
         {
           name: ":regional_indicator_t: :regional_indicator_e: :regional_indicator_x: :regional_indicator_t:  commands",
@@ -226,6 +226,34 @@ async function checkCommand (message, prefix) {
 	const command = args.shift().toLowerCase();
 	var col = null;
 	
+	if(command === "leaderboard"){
+		if(args[0] === "money") {
+			MongoClient.connect(UserURL, function(err, do) {
+				if(err) message.reply("error connecting to server!");
+				var dbo = db.db("users");
+				var sort = { "money": 1 };
+				dbo.collection("users").find().sort(sort).toArray(function(err, result) {
+					if(err) throw err;
+					sendEmbed(message, result, true);
+					db.close();
+				}
+			});
+		} else if (args[0] === "level") {
+			MongoClient.connect(UserURL, function(err, do) {
+				if(err) message.reply("error connecting to server!");
+				var dbo = db.db("users");
+				var sort = { "level": 1 };
+				dbo.collection("users").find().sort(sort).toArray(function(err, result) {
+					if(err) throw err;
+					sendEmbed(message, result, false);
+					db.close();
+				}
+			});
+		} else {
+			message.reply("leaderboard categories are `money` and `level`");
+		}
+	}
+	
 	if(command === "daily") {
 		mongo.connect(UserURL, function(err, db) {
 			var dbo = db.db("users");
@@ -236,7 +264,9 @@ async function checkCommand (message, prefix) {
 				if(result != null){
 					if(result.daily != d.getDate()+d.getMonth()){
 						var ch = defaultUser;
-						message.reply(`you just gained ${result.level * 200} as your daily pay!`);
+						message.reply(`you just gained ${result.level * 200} as your daily pay!`).then(message => {
+							message.delete(3000);
+						});
 						ch.name = result.name;
 						ch.xp = result.xp;
 						ch.level = result.level;
@@ -839,6 +869,62 @@ V`).then(() => {
     message.channel.send(helpMenu);
   }
   
+}
+
+function sendEmbed (channel, result, money) {
+	if(money == true) {
+	message.channel.send (embed: {
+      color: 3447003,
+      description: "Money leaderboard",
+      fields: [{
+          name: `#1 ${result[0].name}`,
+          value: `$ ${result[0].money`
+        },
+		{
+          name: `#2 ${result[1].name}`,
+          value: `$ ${result[1].money`
+        },
+        {
+          name: `#3 ${result[2].name}`,
+          value: `$ ${result[2].money`
+        },
+		{
+          name: `#4 ${result[3].name}`,
+          value: `$ ${result[3].money`
+        },
+        {
+          name: `#5 ${result[4].name}`,
+          value: `$ ${result[4].money`
+        }
+      ]
+	});
+	} else {
+		message.channel.send (embed: {
+			color: 3447003,
+			description: "Level leaderboard",
+			fields: [{
+				name: `#1 ${result[0].name}`,
+				value: `${result[0].level`
+				},
+				{
+				name: `#2 ${result[1].name}`,
+				value: `${result[1].level`
+				},
+				{
+				name: `#3 ${result[2].name}`,
+				value: `${result[2].level`
+				},
+				{
+				name: `#4 ${result[3].name}`,
+				value: `${result[3].level`
+				},
+				{
+				name: `#5 ${result[4].name}`,
+				value: `${result[4].level`
+				}
+			]
+		});
+	}
 }
 
 function makeProfile (mes, money, xp, level, tag) {
