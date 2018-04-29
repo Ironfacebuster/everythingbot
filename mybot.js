@@ -874,8 +874,10 @@ V`).then(() => {
 function sendEmbed (m, result, money) {
 	if(money == true) {
 	m.channel.send ({embed: {
-      color: 3447003,
-      description: "Money leaderboard",
+      color: 261888,
+		"author": {
+			"name": "Money leaderboard"
+		},
       fields: [{
           name: `1: ${result[0].name}`,
           value: `$${result[0].money}`
@@ -900,8 +902,10 @@ function sendEmbed (m, result, money) {
 	}});
 	} else {
 		m.channel.send ({embed: {
-			color: 3447003,
-			description: "Level leaderboard",
+			color: 8323327,
+			"author": {
+				"name": "Level leaderboard"
+			},
 			fields: [{
 				name: `1: ${result[0].name}`,
 				value: `Level: ${result[0].level}`
