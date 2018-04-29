@@ -266,7 +266,12 @@ async function checkCommand (message, prefix) {
 			posterFunction(message, args[0], message.mentions.members.first().user.avatarURL);
 		} else if(args[1] == null) {
 			posterFunction(message, args[0], message.author.avatarURL); 
-		} else posterFunction(message, args[0], args[1]);	
+		}  else if(args[0] != null) {
+			posterFunction(message, args[0], args[1]);	
+		} else {
+			message.reply("you've done something wrong! Are you sure you did `e!poster [amount] [link/user]`?");
+		}
+
 	}
 	
 	if(command === "mirror") {
@@ -306,7 +311,11 @@ async function checkCommand (message, prefix) {
 			blurFunction(message, args[0], message.mentions.members.first().user.avatarURL);
 		} else if(args[1] == null) {
 			blurFunction(message, args[0], message.author.avatarURL); 
-		} else blurFunction(message, args[0], args[1]);	
+		} else if(args[0] != null) {
+			blurFunction(message, args[0], args[1]);	
+		} else {
+			message.reply("you've done something wrong! Are you sure you did `e!blur [amount] [link/user]`?");
+		}
 	}
 	
 	if(command === "rotate") {
@@ -314,7 +323,11 @@ async function checkCommand (message, prefix) {
 			rotateFunction(message, args[0], message.mentions.members.first().user.avatarURL);
 		} else if(args[1] == null) {
 			rotateFunction(message, args[0], message.author.avatarURL); 
-		} else rotateFunction(message, args[0], args[1]);
+		} else if(args[0] != null) {
+			rotateFunction(message, args[0], args[1]);
+		} else {
+			message.reply("you've done something wrong! Are you sure you did `e!rotate [degrees] [link/user]`?");
+		}
 	}
 	
 	if (command === "welcomerole") {
@@ -1004,7 +1017,7 @@ function rotateFunction (message, degrees, im) {
 		} else {
 			var p = parseFloat(degrees);
 			console.log(typeof p);
-			if(p != null && typeof p === "number" && typeof p !== "undefined" && typeof p !== "object"){
+			if(typeof p === "number" && typeof p !== "undefined" && typeof p !== "object"){
 				image.rotate(parseFloat(degrees), true, function(err){
 					if(err) {
 						message.reply("you've done something wrong! Are you sure you did `e!rotate [degrees] [link/user]`?");
