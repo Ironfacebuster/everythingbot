@@ -893,7 +893,7 @@ function posterFunction (message, f,im) {
 			//catch(err);
 		} else {
 			var r = parseFloat(f);
-			if(typeof r === "number" && typeof r !== "undefined" && typeof r !== "object"){
+			if(typeof r == "NaN"){
 				message.channel.startTyping(1);
 				image.posterize(parseFloat(f),function (err, image) {
 					image.write("/app/tempPic.png", function (err) {
@@ -991,7 +991,7 @@ function blurFunction (message, amount, im) {
 			//catch(err);
 		} else {
 			var a = parseInt (amount);
-			if(typeof a === "number" && typeof a !== "undefined" && typeof a !== "object"){
+			if(typeof a == "NaN"){
 				image.blur(parseInt(amount), function (err, image) {
 					if(err) message.reply(err);
 					image.write("/app/tempPic.png", function (err) {
@@ -1017,7 +1017,7 @@ function rotateFunction (message, degrees, im) {
 		} else {
 			var p = parseFloat(degrees);
 			console.log(typeof p);
-			if(typeof p === "number" && typeof p !== "undefined" && typeof p !== "object"){
+			if(typeof p != "NaN"){
 				image.rotate(parseFloat(degrees), true, function(err){
 					if(err) {
 						message.reply("you've done something wrong! Are you sure you did `e!rotate [degrees] [link/user]`?");
