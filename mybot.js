@@ -269,7 +269,7 @@ async function checkCommand (message, prefix) {
 		}  else if(args[0] != null) {
 			posterFunction(message, args[0], args[1]);	
 		} else {
-			message.reply("you've done something wrong! Are you sure you did `e!poster [amount] [link/user]`?");
+			message.reply(`you've done something wrong! Are you sure you did ${prefix}!poster [amount] [link/user]?`);
 		}
 
 	}
@@ -314,7 +314,7 @@ async function checkCommand (message, prefix) {
 		} else if(args[0] != null) {
 			blurFunction(message, args[0], args[1]);	
 		} else {
-			message.reply("you've done something wrong! Are you sure you did `e!blur [amount] [link/user]`?");
+			message.reply(`you've done something wrong! Are you sure you did ${prefix}blur [amount] [link/user]?`);
 		}
 	}
 	
@@ -326,7 +326,7 @@ async function checkCommand (message, prefix) {
 		} else if(args[0] != null) {
 			rotateFunction(message, args[0], args[1]);
 		} else {
-			message.reply("you've done something wrong! Are you sure you did `e!rotate [degrees] [link/user]`?");
+			message.reply(`you've done something wrong! Are you sure you did ${prefix}rotate [degrees] [link/user]?`);
 		}
 	}
 	
@@ -902,7 +902,7 @@ function posterFunction (message, f,im) {
 					});
 				});
 			} else {
-				message.reply("you've done something wrong! Are you sure you did `e!poster [intensity] [link/user]`?");
+				message.reply(`you've done something wrong! Are you sure you did ${prefix}poster [intensity] [link/user]?`);
 			}
 		}
 	});
@@ -1000,7 +1000,7 @@ function blurFunction (message, amount, im) {
 					});
 				});
 			} else {
-				message.reply("you've done something wrong! Are you sure you did `e!blur [amount] [link/user]`?");
+				message.reply(`you've done something wrong! Are you sure you did ${prefix}blur [amount] [link/user]?`);
 			}
 		}
 	});
@@ -1020,7 +1020,7 @@ function rotateFunction (message, degrees, im) {
 			if(typeof p != "NaN"){
 				image.rotate(parseFloat(degrees), true, function(err){
 					if(err) {
-						message.reply("you've done something wrong! Are you sure you did `e!rotate [degrees] [link/user]`?");
+						message.reply(`you've done something wrong! Are you sure you did ${prefix}rotate [degrees] [link/user]?`);
 						throw err;
 					}
 					image.write("/app/tempPic.png", function (err) {
@@ -1029,7 +1029,7 @@ function rotateFunction (message, degrees, im) {
 					});
 				});
 			} else {
-				message.reply("you've done something wrong! Are you sure you did `e!rotate [degrees] [link/user]`?");
+				message.reply(`you've done something wrong! Are you sure you did ${prefix}rotate [degrees] [link/user]?`);
 			}
 		}
 	});
