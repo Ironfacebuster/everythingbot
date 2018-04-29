@@ -312,7 +312,22 @@ async function checkCommand (message, prefix) {
 
 	if(command === "ping") {
     const m = await message.channel.send("Ping?");
-    m.edit(`Pong! Ping is ${m.createdTimestamp - message.createdTimestamp}ms. API ping is ${Math.round(client.ping)}ms`);
+	m.edit({embed: {
+      color: 3447003,
+      description: "Pong!",
+      fields: [
+		{
+          name: "Ping",
+          value: `${m.createdTimestamp - message.createdTimestamp}ms`
+        },
+		{
+          name: "API Ping",
+          value: `${Math.round(client.ping)}ms`
+        }
+		]
+	}
+}
+   // m.edit(`Pong! Ping is ${m.createdTimestamp - message.createdTimestamp}ms. API ping is ${Math.round(client.ping)}ms`);
   }
 
 	if(command === "say") {
