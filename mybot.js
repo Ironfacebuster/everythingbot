@@ -28,7 +28,7 @@ var helpMenu = {
         },
 		{
           name: ":camera:  Image commands",
-          value: "poster, sepia, greyscale, invert, flip, mirror, blur"
+          value: "poster, sepia, greyscale, invert, flip, mirror, blur, rotate"
         },
         {
           name: ":laughing: Fun commands",
@@ -291,9 +291,13 @@ async function checkCommand (message, prefix) {
 	if(command === "blur") {
 		if(args[1] == null){
 			blurFunction(message, args[0], message.author.avatarURL);
-		} else blurFunction(message, args[0], args[1]);
-		//var Attachments = message.attachments;
-		
+		} else blurFunction(message, args[0], args[1]);		
+	}
+	
+	if(command === "rotate") {
+		if(args[1] == null){
+			rotateFunction(message, args[0], message.author.avatarURL);
+		} else rotateFunction(message, args[0], args[1]);
 	}
 	
 	if (command === "welcomerole") {
@@ -381,7 +385,9 @@ async function checkCommand (message, prefix) {
 
 	if(command === "bigtext") {
 		if(args[0] == null){
-			message.reply("I can't make nothing into :regional_indicator_b: :regional_indicator_i: :regional_indicator_g: text!");
+			message.reply("I can't make **nothing** into :regional_indicator_b: :regional_indicator_i: :regional_indicator_g: text!").then(message => {
+				message.delete(5000).catch(console.error);
+			});
 			return;
 		}
     var contains = function(needle) {
@@ -982,5 +988,25 @@ function blurFunction (message, amount, im) {
 		}
 	});
 }	
+
+function rotateFunction (message, degrees, im) {
+	message.channel.startTyping(1);
+	Jimp.read(im, function (err, image) {
+		if(err) {
+			message.channel.stopTyping();
+			console.log(err);
+			message.reply('are you sure this is a link?');
+			//catch(err);
+		} else {
+			image.rotate(degrees, true, function(err){
+				if(err) throw err;
+				image.write("/app/tempPic.png", function (err) {
+					if(err) throw err;
+					message.channel.send("", { files: ["/app/tempPic.png"]}).then(message.channel.stopTyping());
+				});
+			});
+		}
+	});
+}
 
 client.login(process.env.BOT_TOKEN);
