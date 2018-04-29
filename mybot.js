@@ -839,6 +839,7 @@ V`).then(() => {
 function makeProfile (mes, money, xp, level, tag) {
 	Jimp.read(pic, function (err, image) {
 		if(err) throw err;
+		message.channel.startTyping(1);
 		Jimp.loadFont (fon).then(function(font) {
 			image.print(font,parseInt(process.env.NAME_X),parseInt(process.env.NAME_Y), tag).getBuffer(Jimp.MIME_JPEG, function (err, img) {
 			if(err) throw err;
@@ -851,6 +852,7 @@ function makeProfile (mes, money, xp, level, tag) {
 								if(err) throw err;
 								image.scale(0.35).write("/app/tempBal.jpg");
 								mes.channel.send("", { files: ["/app/tempBal.jpg"]}).then(console.log('Balance picture sent'));
+								message.channel.stopTyping();
 							});
 						});
 					});
