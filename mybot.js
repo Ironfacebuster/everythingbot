@@ -887,7 +887,7 @@ function sepiaFunction (message, im) {
 
 function posterFunction (message, f,im) {
 	var r = Math.abs(parseFloat(f));
-	if(r != NaN){
+	if(isNaN(r)==false){
 		Jimp.read(im, function (err, image) {
 			if(err) {
 				console.log(err);
@@ -982,7 +982,7 @@ function flipFunction (message, im) {
 function blurFunction (message, amount, im) {
 	message.channel.startTyping(1);
 	var a = Math.abs(parseInt (amount));
-	if(a != NaN){
+	if(isNan(a)==false){
 		Jimp.read(im, function (err, image) {
 			message.channel.startTyping(1);
 			if(err) {
@@ -1008,7 +1008,7 @@ function rotateFunction (message, degrees, im) {
 	message.channel.startTyping(1);
 	var p = parseFloat(degrees);
 	console.log(p);
-	if(p != NaN){
+	if(isNaN(p)==false){
 		Jimp.read(im, function (err, image) {
 			if(err) {
 				message.channel.stopTyping();
