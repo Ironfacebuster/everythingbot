@@ -1005,10 +1005,9 @@ function blurFunction (message, amount, im) {
 }	
 
 function rotateFunction (message, degrees, im) {
-	message.channel.startTyping(1);
 	var p = parseFloat(degrees);
-	console.log(p);
 	if(isNaN(p)==false){
+		message.channel.startTyping(1);
 		Jimp.read(im, function (err, image) {
 			if(err) {
 				message.channel.stopTyping();
