@@ -1016,7 +1016,7 @@ function rotateFunction (message, degrees, im) {
 			//catch(err);
 		} else {
 			var p = parseFloat(degrees);
-			console.log(typeof p);
+			console.log(p);
 			if(p != NaN){
 				image.rotate(p, true, function(err){
 					if(err) {
