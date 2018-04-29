@@ -236,7 +236,7 @@ async function checkCommand (message, prefix) {
 					if(err) throw err;
 					sendEmbed(message, result, true);
 					db.close();
-				}
+				});
 			});
 		} else if (args[0] === "level") {
 			MongoClient.connect(UserURL, function(err, dbo) {
@@ -247,7 +247,7 @@ async function checkCommand (message, prefix) {
 					if(err) throw err;
 					sendEmbed(message, result, false);
 					db.close();
-				}
+				});
 			});
 		} else {
 			message.reply("leaderboard categories are `money` and `level`");
