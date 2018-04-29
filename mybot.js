@@ -893,7 +893,7 @@ function posterFunction (message, f,im) {
 			//catch(err);
 		} else {
 			var r = Math.abs(parseFloat(f));
-			if(typeof r != "NaN"){
+			if(r != NaN){
 				message.channel.startTyping(1);
 				image.posterize(r,function (err, image) {
 					image.write("/app/tempPic.png", function (err) {
@@ -991,7 +991,7 @@ function blurFunction (message, amount, im) {
 			//catch(err);
 		} else {
 			var a = Math.abs(parseInt (amount));
-			if(typeof a != "NaN"){
+			if(a != NaN){
 				image.blur(a, function (err, image) {
 					if(err) message.reply(err);
 					image.write("/app/tempPic.png", function (err) {
@@ -1017,7 +1017,7 @@ function rotateFunction (message, degrees, im) {
 		} else {
 			var p = parseFloat(degrees);
 			console.log(typeof p);
-			if(typeof p != "NaN"){
+			if(p != NaN){
 				image.rotate(p, true, function(err){
 					if(err) {
 						message.reply(`you've done something wrong! Are you sure you did ${prefix}rotate [degrees] [link/user]?`);
