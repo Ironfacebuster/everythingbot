@@ -1008,7 +1008,7 @@ function rotateFunction (message, degrees, im) {
 	message.channel.startTyping(1);
 	var p = parseFloat(degrees);
 	console.log(p);
-	if(p !== NaN){
+	if(p != NaN){
 		Jimp.read(im, function (err, image) {
 			if(err) {
 				message.channel.stopTyping();
