@@ -254,50 +254,66 @@ async function checkCommand (message, prefix) {
 	}
 	
 	if(command === "sepia") {
-		if(args[0] == null){
-			sepiaFunction(message, message.author.avatarURL);
-		} else sepiaFunction(message, args[0]);
+		if(message.mentions.members.first()!==null) {
+			sepiaFunction(message, message.mentions.members.first().user.avatarURL);
+		} else if(args[0] == null) {
+			sepiaFunction(message, message.author.avatarURL); 
+		} else sepiaFunction(message, args[0]);	
 	}
 	
 	if(command === "poster") {
-		if(args[0] == null){
-			posterFunction(message, message.author.avatarURL);
-		} else posterFunction(message, args[0]);
+		if(message.mentions.members.first()!==null) {
+			posterFunction(message, args[0], message.mentions.members.first().user.avatarURL);
+		} else if(args[1] == null) {
+			posterFunction(message, args[0], message.author.avatarURL); 
+		} else posterFunction(message, args[0], args[1]);	
 	}
 	
 	if(command === "mirror") {
-		if(args[0] == null){
-			mirrorFunction(message, message.author.avatarURL);
-		} else mirrorFunction(message, args[0]);
+		if(message.mentions.members.first()!==null) {
+			mirrorFunction(message, message.mentions.members.first().user.avatarURL);
+		} else if(args[0] == null) {
+			mirrorFunction(message, message.author.avatarURL); 
+		} else mirrorFunction(message, args[0]);	
 	}
 	
 	if(command === "flip") {
-		if(args[0] == null){
-			flipFunction(message, message.author.avatarURL);
-		} else flipFunction(message, args[0]);
+		if(message.mentions.members.first()!==null) {
+			flipFunction(message, message.mentions.members.first().user.avatarURL);
+		} else if(args[0] == null) {
+			flipFunction(message, message.author.avatarURL); 
+		} else flipFunction(message, args[0]);	
 	}
 	
 	if(command === "invert") {
-		if(args[0] == null){
-			invertFunction(message, message.author.avatarURL);
-		} else invertFunction(message, args[0]);
+		if(message.mentions.members.first()!==null) {
+			invertFunction(message, message.mentions.members.first().user.avatarURL);
+		} else if(args[0] == null) {
+			invertFunction(message, message.author.avatarURL); 
+		} else invertFunction(message, args[0]);	
 	}
 	
 	if(command === "greyscale") {
-		if(args[0] == null){
-			greyscaleFunction(message, message.author.avatarURL);
-		} else greyscaleFunction(message, args[0]);
+		if(message.mentions.members.first()!==null) {
+			greyscaleFunction(message, message.mentions.members.first().user.avatarURL);
+		} else if(args[0] == null) {
+			greyscaleFunction(message, message.author.avatarURL); 
+		} else greyscaleFunction(message, args[0]);	
 	}
 	
 	if(command === "blur") {
-		if(args[1] == null){
-			blurFunction(message, args[0], message.author.avatarURL);
-		} else blurFunction(message, args[0], args[1]);		
+		if(message.mentions.members.first()!==null) {
+			blurFunction(message, args[0], message.mentions.members.first().user.avatarURL);
+		} else if(args[1] == null) {
+			blurFunction(message, args[0], message.author.avatarURL); 
+		} else blurFunction(message, args[0], args[1]);	
 	}
 	
 	if(command === "rotate") {
-		if(args[1] == null){
-			rotateFunction(message, args[0], message.author.avatarURL);
+		if(message.mentions.members.first()) {
+			rotateFunction(message, args[0], message.mentions.members.first().user.avatarURL);
+		} else if(args[1] == null) {
+			rotateFunction(message, args[0], message.author.avatarURL); 
 		} else rotateFunction(message, args[0], args[1]);
 	}
 	
@@ -827,7 +843,7 @@ function makeProfile (mes, money, xp, level, tag) {
 							image.print(font,36,410, `$${money}`).getBuffer(Jimp.MIME_JPEG, function (err, img) {
 								if(err) throw err;
 								image.scale(0.35).write("/app/tempBal.jpg");
-								mes.channel.send("", { files: ["/app/tempBal.jpg"]}).then(console.log('Balance picture sent'));
+								mes.channel.send("", { files: ["/app/tempBal.jpg"]});
 								mes.channel.stopTyping();
 							});
 						});
@@ -856,7 +872,7 @@ function sepiaFunction (message, im) {
 	});
 }	
 
-function posterFunction (message, im) {
+function posterFunction (message, f,im) {
 	Jimp.read(im, function (err, image) {
 		if(err) {
 			console.log(err);
@@ -864,7 +880,7 @@ function posterFunction (message, im) {
 			//catch(err);
 		} else {
 			message.channel.startTyping(1);
-			image.posterize(4,function (err, image) {
+			image.posterize(parseFloat(f),function (err, image) {
 				image.write("/app/tempPic.png", function (err) {
 					if(err) throw err;
 					message.channel.send("", { files: ["/app/tempPic.png"]}).then(message.channel.stopTyping());
