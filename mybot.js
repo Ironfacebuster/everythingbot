@@ -904,11 +904,11 @@ function sendEmbed (channel, result, money) {
 			description: "Level leaderboard",
 			fields: [{
 				name: `1: ${result[0].name}`,
-				value: `${result[0].level`
+				value: `${result[0].level}`
 				},
 				{
 				name: `2: ${result[1].name}`,
-				value: `${result[1].level`
+				value: `${result[1].level}`
 				},
 				{
 				name: `3: ${result[2].name}`,
