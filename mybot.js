@@ -879,13 +879,17 @@ function posterFunction (message, f,im) {
 			message.reply('are you sure this is a link?');
 			//catch(err);
 		} else {
-			message.channel.startTyping(1);
-			image.posterize(parseFloat(f),function (err, image) {
-				image.write("/app/tempPic.png", function (err) {
-					if(err) throw err;
-					message.channel.send("", { files: ["/app/tempPic.png"]}).then(message.channel.stopTyping());
+			if(parseFloat(f) !== undefined){
+				message.channel.startTyping(1);
+				image.posterize(parseFloat(f),function (err, image) {
+					image.write("/app/tempPic.png", function (err) {
+						if(err) throw err;
+						message.channel.send("", { files: ["/app/tempPic.png"]}).then(message.channel.stopTyping());
+					});
 				});
-			});
+			} else {
+				message.reply("you've done something wrong! Are you sure you did `e!poster [intensity] [link/user]`?");
+			}
 		}
 	});
 }	
@@ -972,13 +976,17 @@ function blurFunction (message, amount, im) {
 			message.reply('are you sure this is a link?');
 			//catch(err);
 		} else {
-			image.blur(parseInt(amount), function (err, image) {
-				if(err) message.reply(err);
-				image.write("/app/tempPic.png", function (err) {
-					if(err) throw err;
-					message.channel.send("", { files: ["/app/tempPic.png"]}).then(message.channel.stopTyping());
+			if(parseInt(amount) !== undefined){
+				image.blur(parseInt(amount), function (err, image) {
+					if(err) message.reply(err);
+					image.write("/app/tempPic.png", function (err) {
+						if(err) throw err;
+						message.channel.send("", { files: ["/app/tempPic.png"]}).then(message.channel.stopTyping());
+					});
 				});
-			});
+			} else {
+				message.reply("you've done something wrong! Are you sure you did `e!blur [amount] [link/user]`?");
+			}
 		}
 	});
 }	
@@ -992,7 +1000,8 @@ function rotateFunction (message, degrees, im) {
 			message.reply('are you sure this is a link?');
 			//catch(err);
 		} else {
-			if(parseFloat(degrees) != null){
+			console.log(parseFloat(degrees));
+			if(parseFloat(degrees) !== undefined){
 				image.rotate(parseFloat(degrees), true, function(err){
 					if(err) { 
 						message.reply("you've done something wrong! Are you sure you did `e!rotate [degrees] [link/user]`?");
