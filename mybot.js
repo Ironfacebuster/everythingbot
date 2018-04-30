@@ -150,7 +150,7 @@ client.on("message", async message => {
 		if(message.guild !== null) {
 			dbo.collection("servers").find(query).toArray (function (err, result) {
 				if(err) throw err;
-				if(result[0].prefix!=null){
+				if(result[0] != null){
 					prefix = result[0].prefix;
 					checkCommand(message,prefix);
 				} else {
