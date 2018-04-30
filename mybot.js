@@ -948,8 +948,8 @@ function makeProfile (mes, money, xp, level, tag) {
 							if(err) throw err;
 							image.print(font,36,410, `$${money}`).getBuffer(Jimp.MIME_JPEG, function (err, img) {
 								if(err) throw err;
-								image.scale(0.35).write("/app/tempBal.jpg");
-								mes.channel.send("", { files: ["/app/tempBal.jpg"]});
+								image.scale(0.35).write("/app/tempBal.png");
+								mes.channel.send("", { files: ["/app/tempBal.png"]});
 								mes.channel.stopTyping();
 							});
 						});
