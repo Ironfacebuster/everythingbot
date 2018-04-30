@@ -126,6 +126,7 @@ client.on("guildmemberadd", guild => {
 });
 
 client.on("guildDelete", guild => {
+	/*
   mongo.connect(ServerURL, function(err, db) {
   var dbo = db.db("servers");
   var query = { "serverID": guild.id };
@@ -137,6 +138,7 @@ client.on("guildDelete", guild => {
 		});
 	});
   });
+  */
   console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
   client.user.setActivity(`on ${client.guilds.size} servers | e!help`);
 });
@@ -148,8 +150,15 @@ client.on("message", async message => {
 		if(message.guild !== null) {
 			dbo.collection("servers").find(query).toArray (function (err, result) {
 				if(err) throw err;
-				prefix = result[0].prefix;
-				checkCommand(message,prefix);
+				if(result[0].prefix!=null){
+					prefix = result[0].prefix;
+					checkCommand(message,prefix);
+				} else {
+					dbo.collection("servers").insert(serv, function(err, obj) {
+						if(err) throw err;
+						db.close();
+					});
+				}
 			});
 		}
 	});
