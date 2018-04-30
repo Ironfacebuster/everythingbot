@@ -736,7 +736,7 @@ V`).then(() => {
   }
 
 	if (command === "invite") {
-   message.channel.send(`You can invite me with this link: https://discordapp.com/api/oauth2/authorize?client_id=438881380500373504&permissions=8&scope=bot`);
+   message.channel.send(`You can invite me with this link: https://discordapp.com/api/oauth2/authorize?client_id=440524747353227275&permissions=8&scope=bot`);
   }
 
 	if (command === "kill" || command === "die") {
