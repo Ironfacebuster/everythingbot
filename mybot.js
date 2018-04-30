@@ -155,7 +155,7 @@ client.on("message", async message => {
 					checkCommand(message,prefix);
 				} else {
 					var serv = defaultServer;
-					serv.serverID = guild.id;
+					serv.serverID = message.guild.id;
 					dbo.collection("servers").insert(serv, function(err, obj) {
 						if(err) throw err;
 						db.close();
