@@ -14,8 +14,8 @@ const client = new Discord.Client();
 
 var prefix = 'e!';
 
-//var pic = "https://github.com/Ironfacebuster/everythingbot/blob/master/balPic.png?raw=true";
-var pic = "/app/balPic.png"
+var pic = "https://github.com/Ironfacebuster/everythingbot/blob/master/balPic.png?raw=true";
+//var pic = "/app/balPic.png"
 var fon = ".fonts/bahnschrift.fnt";
 var fonTwo = ".fonts/FranklinGothicMedium.fnt";
 
