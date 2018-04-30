@@ -154,6 +154,8 @@ client.on("message", async message => {
 					prefix = result[0].prefix;
 					checkCommand(message,prefix);
 				} else {
+					var serv = defaultServer;
+					serv.serverID = guild.id;
 					dbo.collection("servers").insert(serv, function(err, obj) {
 						if(err) throw err;
 						db.close();
