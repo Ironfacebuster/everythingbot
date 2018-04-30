@@ -144,7 +144,7 @@ client.on("message", async message => {
 	mongo.connect(ServerURL, function(err, db) {
 		var dbo = db.db("servers");
 		var query = { "serverID": message.guild.id };
-		if(message.guild === null) {
+		if(message.guild !== null) {
 			dbo.collection("servers").find(query).toArray (function (err, result) {
 				if(err) throw err;
 				prefix = result[0].prefix;
