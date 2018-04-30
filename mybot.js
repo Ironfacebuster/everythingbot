@@ -551,14 +551,14 @@ async function checkCommand (message, prefix) {
 
 	if(command === "kick") {
     if(!message.member.hasPermission("KICK_MEMBERS")) {
-        return message.reply("Sorry, you don't have permissions to use this.");
+        return message.reply("sorry, you don't have permissions to use this.");
     }
 
     let member = message.mentions.members.first();
     if(!member)
-      return message.reply("This user doesn't exist.");
+      return message.reply("this user doesn't exist.");
     if(!member.kickable)
-      return message.reply("User wasn't kicked. Make sure that I have `kick members` permissions, and that the user is kick-able.");
+      return message.reply("user wasn't kicked. Make sure that I have `kick members` permissions, and that the user is kick-able.");
     let reason = args.slice(1).join(' ');
     if(!reason)
       return message.reply("Please indicate a reason for the kick.");
@@ -733,7 +733,7 @@ V`).then(() => {
       "no u"
     ];
     let member = message.mentions.members.first();
-    if (!member) return message.reply("I can't roast someone that isn't a person, **smh.**");
+    if (!member) return message.reply("I can't kill someone that isn't a person, **smh.**");
     let rand = Math.floor((Math.random() * (listOfRoasts.length-1)) + 1);
     if (listOfRoasts[rand] == "no u") {
       message.channel.send(listOfRoasts[rand]);
@@ -745,29 +745,29 @@ V`).then(() => {
 
 	if (command === "roast" || command === "insult") {
     var listOfRoasts = [
-      "Shut up, you'll never be the man your mother is.",
-      "You're a failed abortion whose birth certificate is an apology from the condom factory.",
-      "You must have been born on a highway, because that's where most accidents happen.",
-      "Your family tree is a cactus, because everybody on it is a prick.",
-      "You're so ugly Hello Kitty said goodbye to you.",
-      "You are so ugly that when your mama dropped you off at school she got a fine for littering.",
-      "It looks like your face caught on fire and someone tried to put it out with a fork.",
-      "Do you have to leave so soon? I was just about to poison the tea.",
-      "Your so ugly when you popped out the doctor said aww what a treasure and your mom said yeah lets bury it",
-      "We all sprang from apes, but you didn't spring far enough.",
+      "shut up, you'll never be the man your mother is.",
+      "you're a failed abortion whose birth certificate is an apology from the condom factory.",
+      "you must have been born on a highway, because that's where most accidents happen.",
+      "your family tree is a cactus, because everybody on it is a prick.",
+      "you're so ugly Hello Kitty said goodbye to you.",
+      "you are so ugly that when your mama dropped you off at school she got a fine for littering.",
+      "it looks like your face caught on fire and someone tried to put it out with a fork.",
+      "do you have to leave so soon? I was just about to poison the tea.",
+      "your so ugly when you popped out the doctor said aww what a treasure and your mom said yeah lets bury it",
+      "we all sprang from apes, but you didn't spring far enough.",
       ", you are the equivalent of a gential piercing",
       "when I think of you, I think of world hunger, children dying, and paralyzed soldiers",
-      " tried to donate his hair to children with cancer. They said \“don’t we got enough problems now you want us to look like fags\”",
+      "tried to donate his hair to children with cancer. They said \“don’t we got enough problems now you want us to look like fags\”",
       "you remind me of a middle aged man who just got a divorce. You sit in your room playing on your computer noodling around with these bots when all you’re doing is reminding yourself of how much a complete and utter failure you are.",
       "why are you hanging out with teenagers? Shouldn’t you be at the nursing home playing shuffleboard with your 80 year old girlfriend?",
-      "Your life is like a steak at a vegan resteraunt. It doesn’t cross the place",
-      "What’s the difference between you and a brain tumor? You can get a brain tumor removed.",
+      "your life is like a steak at a vegan resteraunt. It doesn’t cross the place",
+      "what’s the difference between you and a brain tumor? You can get a brain tumor removed.",
       "is so ugly her face was shut down by the health department.",
       "is so ugly that when she met the Kardashians they thought she was a fourth grader with cancer.",
       "is so poor she waves around a popsicle and calls it air conditioning.",
-      "You're an example of why animals eat their young.",
+      "you're an example of why animals eat their young.",
       "I would shoot you, but that would be disrespectful to the bullet",
-      "You’re so fat that when you step on a scale it says: \“I need your weight not your phone number\”"
+      "you’re so fat that when you step on a scale it says: \“I need your weight not your phone number\”"
     ];
     let member = message.mentions.members.first();
     if (!member) return message.reply("I can't roast someone that isn't a person smh.");
