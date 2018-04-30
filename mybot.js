@@ -14,8 +14,8 @@ const client = new Discord.Client();
 
 var prefix = 'e!';
 
-var pic = "https://github.com/Ironfacebuster/everythingbot/blob/master/balPic.png?raw=true";
-//var pic = "/app/balPic.png"
+//var pic = "https://github.com/Ironfacebuster/everythingbot/blob/master/balPic.png?raw=true";
+var pic = "/app/balPic.png"
 var fon = ".fonts/bahnschrift.fnt";
 var fonTwo = ".fonts/FranklinGothicMedium.fnt";
 
@@ -948,8 +948,8 @@ function makeProfile (mes, money, xp, level, tag) {
 							if(err) throw err;
 							image.print(font,36,410, `$${money}`).getBuffer(Jimp.MIME_JPEG, function (err, img) {
 								if(err) throw err;
-								image.scale(0.35).write("/app/tempBal.png");
-								mes.channel.send("", { files: ["/app/tempBal.png"]});
+								image.scale(0.35).write("/app/tempBal.jpg");
+								mes.channel.send("", { files: ["/app/tempBal.jpg"]});
 								mes.channel.stopTyping();
 							});
 						});
